@@ -5,21 +5,23 @@ function WaveBackground() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const body = document.body;
     const checkTheme = () => {
-      setIsDark(body.classList.contains("dark"));
+      setIsDark(document.documentElement.classList.contains("dark"));
     };
 
     checkTheme();
 
     const observer = new MutationObserver(checkTheme);
-    observer.observe(body, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     return () => observer.disconnect();
   }, []);
 
-  const wave1Color = isDark ? "#1a1a1a" : "#cce8ff";
-  const wave2Color = isDark ? "#333" : "#a3d4f7";
+  const wave1Color = isDark ? "#7859ff" : "#c3e8ff";
+  const wave2Color = isDark ? "#bd96ff" : "#a3d4f7";
 
   return (
     <div

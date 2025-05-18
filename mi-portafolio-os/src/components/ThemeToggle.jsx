@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
+import AnimatedIcon from "./AnimatedIcon";
+
+import lightIcon from "../assets/dark_mode_light.webp"; 
+import darkIcon from "../assets/dark_mode_dark.webp";   
 
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
-  useEffect(() => {
-    const isDarkMode = document.body.classList.contains("dark");
-    setIsDark(isDarkMode);
-  }, []);
+useEffect(() => {
+  setIsDark(document.documentElement.classList.contains("dark"));
+}, []);
 
-  const toggleTheme = () => {
-    document.body.classList.toggle("dark");
-    setIsDark(!isDark);
-  };
+ // useEffect(() => {
+ //   const isDarkMode = document.documentElement.classList.contains("dark");
+ //   setIsDark(isDarkMode);
+ // }, []);
+
+ const toggleTheme = () => {
+  const root = document.documentElement; // <html>
+  root.classList.toggle("dark");
+  setIsDark(root.classList.contains("dark"));
+};
+
 
   return (
     <button
@@ -19,19 +29,18 @@ function ThemeToggle() {
       style={{
         position: "fixed",
         top: "1rem",
-        right: "1rem",
+        left: "1rem",
         zIndex: 9999,
-        backgroundColor: isDark ? "#333" : "#fff",
-        color: isDark ? "#fff" : "#f79902",
-        padding: "0.5rem",
-        borderRadius: "50%",
         border: "none",
-        boxShadow: "0 0 10px rgba(0,0,0,0.2)",
-        cursor: "pointer",
-        transition: "all 0.3s",
+        background: "none",
       }}
     >
-      {isDark ? "🌞" : "🌙"}
+      <AnimatedIcon
+        srcLight={lightIcon}  
+        srcDark={darkIcon} 
+        alt="Theme"
+        size={50}
+      />
     </button>
   );
 }
