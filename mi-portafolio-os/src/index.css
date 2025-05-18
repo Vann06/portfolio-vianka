@@ -1,0 +1,22 @@
+
+:root {
+  --bg-color: #f7f2eb;
+  --text-color: #333;
+}
+
+body.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #f1f1f1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
