@@ -2,8 +2,14 @@ body {
   background-color: #f7f2eb;
   color: #333;
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Segoe UI', 'Inter', sans-serif; 
 }
 
+
+body,html,#root {
+  height: 100%;
+  overflow: visible;
+}
 html.dark body {
   background-color: #1e1e2f;
   color: #fff;

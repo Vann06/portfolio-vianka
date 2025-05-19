@@ -1,43 +1,96 @@
-import { useState } from "react";
+import { Rnd } from "react-rnd";
+import { useState, useEffect } from "react";
 
-function Window({ title, children }) {
-  const [position, setPosition] = useState({ x: 100, y: 100 });
-  const [dragging, setDragging] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+function Window({ title, children, onClose, zIndex = 10, onFocus }) {
+  const [isDark, setIsDark] = useState(false);
 
-  const handleMouseDown = (e) => {
-    setDragging(true);
-    setOffset({ x: e.clientX - position.x, y: e.clientY - position.y });
-  };
-
-  const handleMouseMove = (e) => {
-    if (dragging) {
-      setPosition({ x: e.clientX - offset.x, y: e.clientY - offset.y });
-    }
-  };
-
-  const handleMouseUp = () => setDragging(false);
+  useEffect(() => {
+    const update = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div
-      className="fixed inset-0 z-10"
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
+    <Rnd
+      default={{
+        x: 80,
+        y: 120,
+        width: 300,
+        height: 500,
+      }}
+      minWidth={300}
+      bounds="parent"
+      //dragHandleClassName="handle"
+      style={{ zIndex, position: "absolute" }}
+      onMouseDown={onFocus}
     >
       <div
-        className="absolute bg-white shadow-lg rounded w-80"
-        style={{ left: position.x, top: position.y }}
+        style={{
+          background: isDark
+            ? "linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184))"
+            : "white",
+          borderRadius: "12px",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.25)",
+          border: isDark ? "2px solid #dddaf0" : "2px solid #ccc",
+          color: isDark ? "#dddaf0" : "#000",
+          //overflow: "hidden",
+          fontFamily: "'Segoe UI', 'Inter', sans-serif",
+        }}
       >
+        {/* Barra superior */}
         <div
-          className="bg-gray-800 text-white px-4 py-2 rounded-t cursor-move select-none flex justify-between items-center"
-          onMouseDown={handleMouseDown}
+          className="handle flex justify-between items-center px-4 py-2 shadow-md"
+          style={{
+            backgroundColor: isDark ? "#222024" : "#346285",
+            borderBottom: isDark ? "2px solid #dddaf0" : "2px solid #555",
+            cursor: "move",
+            color: "white",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            paddingLeft: "1rem",
+            paddingRight: "1rem",
+          }}
         >
           <span>{title}</span>
-          {/* Aquí podrías poner un botón de cerrar si quieres */}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="hover:scale-110 transition"
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "white",
+                fontWeight: "bold",
+                fontSize: "1rem",
+                cursor: "pointer",
+              }}
+            >
+              [X]
+            </button>
+          )}
         </div>
-        <div className="p-4">{children}</div>
+
+
+        {/* Contenido */}
+        <div
+          style={{
+            padding: "2rem",
+            fontSize: "1rem",
+            lineHeight: "1.6",
+            fontFamily: "'Segoe UI', 'Inter', sans-serif",
+          }}
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </Rnd>
   );
 }
 

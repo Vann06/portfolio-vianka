@@ -1,12 +1,14 @@
 import HomeView from "./views/HomeView";
 import ThemeToggle from "./components/ThemeToggle";
+import { WindowProvider } from "./context/WindowContext";
+
 
 function App() {
   return (
-    <>
-      <ThemeToggle />
-      <HomeView />
-    </>
+    <WindowProvider>
+        <ThemeToggle />
+        <HomeView />
+    </WindowProvider>
   );
 }
 

@@ -1,22 +1,44 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 export const WindowContext = createContext();
 
 export function WindowProvider({ children }) {
-  const [openWindows, setOpenWindows] = useState([]);
+  const [windows, setWindows] = useState([]);
+  const [zCounter, setZCounter] = useState(100); 
 
-  const openWindow = (windowName) => {
-    if (!openWindows.includes(windowName)) {
-      setOpenWindows([...openWindows, windowName]);
+  const openWindow = (name) => {
+    const exists = windows.find((w) => w.name === name);
+    if (!exists) {
+      setWindows((prev) => [...prev, { name, zIndex: zCounter }]);
+      setZCounter((z) => z + 1);
+    } else {
+      bringToFront(name); 
     }
   };
 
-  const closeWindow = (windowName) => {
-    setOpenWindows(openWindows.filter((name) => name !== windowName));
+  const closeWindow = (name) => {
+    setWindows((prev) => prev.filter((w) => w.name !== name));
+  };
+
+  const bringToFront = (name) => {
+    const maxZ = zCounter + 1;
+    setWindows((prev) =>
+      prev.map((w) =>
+        w.name === name ? { ...w, zIndex: maxZ } : w
+      )
+    );
+    setZCounter(maxZ);
   };
 
   return (
-    <WindowContext.Provider value={{ openWindows, openWindow, closeWindow }}>
+    <WindowContext.Provider
+      value={{
+        windows,
+        openWindow,
+        closeWindow,
+        bringToFront,
+      }}
+    >
       {children}
     </WindowContext.Provider>
   );

@@ -20,8 +20,8 @@ function WaveBackground() {
     return () => observer.disconnect();
   }, []);
 
-  const wave1Color = isDark ? "#7859ff" : "#c3e8ff";
-  const wave2Color = isDark ? "#bd96ff" : "#a3d4f7";
+  const wave1Color = isDark ? "#6d57cf" : "#c3e8ff";
+  const wave2Color = isDark ? "#d0b6fc" : "#a3d4f7";
 
   return (
     <div

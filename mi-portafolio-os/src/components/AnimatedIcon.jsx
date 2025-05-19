@@ -38,7 +38,7 @@ function AnimatedIcon({ srcLight, srcDark, alt, size = 40, onClick, className = 
         transform: clicked ? "scale(0.9)" : "scale(1)",
         transition: "transform 0.2s ease",
         cursor: "pointer",
-      }}
+        }}
       onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
       onMouseLeave={(e) =>
         (e.currentTarget.style.transform = clicked ? "scale(0.9)" : "scale(1)")

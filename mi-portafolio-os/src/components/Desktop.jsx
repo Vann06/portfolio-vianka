@@ -1,5 +1,6 @@
 import DesktopIcon from "./DesktopIcon";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
+import { WindowContext } from "../context/WindowContext";
 import icon_about from "../assets/icon_about.webp";
 import icon_about_dark from "../assets/icon_about_dark.webp";
 import icon_links from "../assets/icon_links.webp";
@@ -13,6 +14,7 @@ import icon_cv_dark from "../assets/icon_cv_dark.webp";
 
 function Desktop() {
   const[isDark, setIsDark] = useState(false);
+  const {openWindow} = useContext(WindowContext);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -56,35 +58,36 @@ function Desktop() {
   <div
   style={{
     background: isDark
-      ? "linear-gradient(to bottom, #785cf2, #ad9df2)"
+      ? "linear-gradient(to bottom,rgb(74, 59, 134),rgb(110, 94, 184))"
       : "white",
     borderRadius: "12px",
     boxShadow: "4px 6px 10px rgba(0, 0, 0, 0.15)",
-    border: isDark ? "2px solid #444" : "2px solid #ccc",
-    maxWidth: "1000px",
+    border: isDark ? "2px solid #dddaf0" : "2px solid #ccc",
+    maxWidth: "700px",
     width: "95%",
     zIndex: 1,
     transition: "all 0.3s ease-in-out",
     color: isDark ? "white" : "#222",
   }}
+  className="dark:bg-[#10101a] dark:border-[#444] dark:text-white text-gray-800"
 >
-
       {/* Barra superior */}
       <div
         style={{
-          backgroundColor: "#3c3c3c",
+          backgroundColor: isDark ? "#222024" : "#346285",
           color: "white",
           padding: "0.75rem 1rem",
           borderTopLeftRadius: "12px",
           borderTopRightRadius: "12px",
+          borderBottom: isDark ? "2px solid #dddaf0" : "2px solid #444957",
           fontWeight: "bold",
           fontFamily: "monospace",
           textAlign: "left",
         }}
-        className="dark:bg-[#292145]"
       >
         home
       </div>
+  
 
       {/* Contenido */}
       <div style={{ padding: "2rem", textAlign: "center" }}>
@@ -93,14 +96,17 @@ function Desktop() {
           <span
             style={{
               fontWeight: "bold",
-              color: "#f79902",
+              color: isDark ? "white" : "#70b0e0"
             }}
             className="dark:text-[#a585ff]"
           >
             i’m Vianka
           </span>
         </h1>
-        <p style={{ fontSize: "1.2rem", color: "#444" }} className="dark:text-gray-300">
+        <p style={{ 
+          fontSize: "1.2rem", 
+          color: isDark ? "white" : "#1b2c45"
+           }} className="dark:text-gray-300">
           illustrator, animator, and developer
         </p>
 
@@ -120,6 +126,7 @@ function Desktop() {
               title={item.title}
               iconLight={item.iconLight}
               iconDark={item.iconDark}
+              onClick={() => openWindow(item.title)}
             />
           ))}
         </div>
