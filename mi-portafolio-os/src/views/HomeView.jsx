@@ -1,6 +1,7 @@
 import WaveBackground from "../components/WaveBackground";
 import Desktop from "../components/Desktop";
 import AboutWindow from "../windows/AboutWindow";
+import ContactWindow from "../windows/ContactWindow";
 import { useContext } from "react";
 import { WindowContext } from "../context/WindowContext";
 
@@ -15,6 +16,9 @@ function HomeView() {
     if (win.name === "about") {
       return <AboutWindow key="about" zIndex={win.zIndex} />;
     }
+    if (win.name === "links") {
+      return <ContactWindow key="links" zIndex={win.zIndex} />;
+    }       
     return null;
   })}
 

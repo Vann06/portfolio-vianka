@@ -12,6 +12,9 @@ import icon_contact_dark from "../assets/icon_contact_dark.webp";
 import icon_cv from "../assets/icon_cv_light.webp";
 import icon_cv_dark from "../assets/icon_cv_dark.webp";
 
+import linkedin from "../assets/linkedin.svg";
+import instagram from "../assets/instagram.svg";
+import github from "../assets/github.svg";
 function Desktop() {
   const[isDark, setIsDark] = useState(false);
   const {openWindow} = useContext(WindowContext);
@@ -100,7 +103,7 @@ function Desktop() {
             }}
             className="dark:text-[#a585ff]"
           >
-            i’m Vianka
+            I’m Vianka
           </span>
         </h1>
         <p style={{ 
@@ -141,9 +144,15 @@ function Desktop() {
           marginBottom: "1rem",
         }}
       >
-        <img src="/icons/twitter.png" alt="Twitter" style={iconStyle} />
-        <img src="/icons/youtube.png" alt="YouTube" style={iconStyle} />
-        <img src="/icons/instagram.png" alt="Instagram" style={iconStyle} />
+        <a href="https://www.linkedin.com/in/vianka-castro-121a90364/" target="_blank" rel="noopener noreferrer">
+          <img src={linkedin} alt="Linkedin" style={iconStyle} />
+        </a>
+        <a href= "https://www.github.com/Vann06" target="_blank" rel="noopener noreferrer">
+          <img src={github} alt="Github" style={iconStyle} />
+        </a>
+        <a href="https://www.instagram.com/copy._.cat/" target="_blank" rel="noopener noreferrer">
+          <img src={instagram} alt="Instagram" style={iconStyle} />
+        </a>
       </div>
     </div>
   );
