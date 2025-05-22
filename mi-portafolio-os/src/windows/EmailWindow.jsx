@@ -4,6 +4,7 @@ import { WindowContext } from '../context/WindowContext';
 import WindowContent from '../components/WindowContent';
 import emailjs from '@emailjs/browser';
 import '../styles/email.css';
+import '../styles/buttons.css'
 
 function EmailWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
@@ -41,7 +42,7 @@ function EmailWindow({ zIndex }) {
             </div>
             ) : (
             <form ref={form} onSubmit={sendEmail} className="email-form">
-                <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+                <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
                     Want to get in touch?
                 </h1>
                 <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW52MHBhaG50cTVmMXQxNmZwcWw0M3l2NmVxaTI3anpraWVwOThzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LHZyixOnHwDDy/giphy.gif" alt="Michi-Gif"/>
@@ -59,7 +60,7 @@ function EmailWindow({ zIndex }) {
 
                 <textarea name="message" placeholder="Your message here.." required rows={5} />
 
-                <button type="submit">Send</button>
+                <button className='btn'>Send</button>
 
                 {error && <div className="email-error">{error}</div>}
             </form>

@@ -1,0 +1,30 @@
+/* Botón base */
+.btn {
+  background-color: #2596be;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+  display: inline-block;
+  box-shadow: 0 0 0 transparent;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(37, 150, 190, 0.5);
+}
+
+/* Dark mode */
+html.dark .btn {
+  background-color: #8765e4;
+  color: white;
+}
+
+html.dark .btn:hover {
+  box-shadow: 0 0 10px rgba(135, 101, 228, 0.6);
+}

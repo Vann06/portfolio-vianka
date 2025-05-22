@@ -31,7 +31,7 @@ html.dark .email-form textarea {
 
 /* Botón */
 .email-form button {
-  background-color: #70b0e0;
+  background-color: #2596be;
   color: white;
   padding: 0.75rem;
   border: none;
@@ -39,10 +39,11 @@ html.dark .email-form textarea {
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.2s, background-color 0.3s;
+            
 }
 
 html.dark .email-form button {
-  background-color: #a585ff;
+  background-color: #8765e4;
 }
 
 .email-form button:hover {
@@ -61,8 +62,8 @@ html.dark .email-form button {
 }
 
 html.dark .email-success {
-  background-color: #2a3f33;
-  color: #7bed9f;
+  background-color: #2b2a3f;
+  color: #25debf;
   border-color: #55efc4;
 }
 
