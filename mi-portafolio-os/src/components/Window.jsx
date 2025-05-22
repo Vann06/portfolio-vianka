@@ -47,7 +47,19 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
       >
         {/* Barra superior */}
       <div className="window-container">
-        <div className="window-header handle">
+        <div className="window-header handle"
+          style={{
+          backgroundColor: isDark ? "#222024" : "#346285",
+          color: "white",
+          padding: "0.75rem 1rem",
+          borderTopLeftRadius: "12px",
+          borderTopRightRadius: "12px",
+          borderBottom: isDark ? "2px solid #dddaf0" : "2px solid #444957",
+          fontWeight: "bold",
+          fontFamily: "monospace",
+          textAlign: "left",
+        }}
+        >
           <span>{title}</span>
           {onClose && (
             <button onClick={onClose} className="window-close" style={{

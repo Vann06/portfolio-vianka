@@ -30,6 +30,7 @@ function WindowContent({ children }) {
     >
       {children}
     </div>
+
   );
 }
 

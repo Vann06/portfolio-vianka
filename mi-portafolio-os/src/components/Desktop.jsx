@@ -46,7 +46,7 @@ function Desktop() {
       iconDark: icon_work_dark,
     },
     {
-      title: "curriculum",
+      title: "resume",
       iconLight: icon_cv,
       iconDark: icon_cv_dark,
     },
