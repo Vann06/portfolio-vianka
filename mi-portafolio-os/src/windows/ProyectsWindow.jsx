@@ -5,7 +5,7 @@ import WindowContent from "../components/WindowContent";
 
 
 
-function ProjectsWindow({ zIndex }) {   
+function ProyectsWindow({ zIndex }) {   
     const { closeWindow, bringToFront } = useContext(WindowContext);    
 
     return (
@@ -21,4 +21,4 @@ function ProjectsWindow({ zIndex }) {
     );
 }
 
-export default ProjectsWindow;
+export default ProyectsWindow;

@@ -14,7 +14,6 @@ function ResumeWindow({ zIndex }) {
             onClose={() => closeWindow("resume")}
             onFocus={() => bringToFront("resume")}
         >
-            <WindowContent>
                 <div className="flex flex-col items-center">
                     <h1 className="text-2xl font-bold mb-4">My Resume</h1>
                     <p className="text-center mb-4">
@@ -70,7 +69,6 @@ function ResumeWindow({ zIndex }) {
                     </button>
                 
                 </div>
-            </WindowContent>
         </Window>
         
     );

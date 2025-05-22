@@ -1,0 +1,121 @@
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Inputs */
+.email-form input,
+.email-form textarea {
+  padding: 0.75rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  color: #1b2c45;
+  transition: border-color 0.2s;
+}
+
+html.dark .email-form input,
+html.dark .email-form textarea {
+  background: #222024;
+  color: #dddaf0;
+  border-color: #555;
+}
+
+.email-form input:focus,
+.email-form textarea:focus {
+  border-color: #70b0e0;
+  outline: none;
+}
+
+/* Botón */
+.email-form button {
+  background-color: #70b0e0;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+html.dark .email-form button {
+  background-color: #a585ff;
+}
+
+.email-form button:hover {
+  transform: scale(1.05);
+}
+
+/* Mensaje de éxito */
+.email-success {
+  background-color: #e0f8ea;
+  color: #2ecc71;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #b2eac9;
+}
+
+html.dark .email-success {
+  background-color: #2a3f33;
+  color: #7bed9f;
+  border-color: #55efc4;
+}
+
+/* Mensaje de error */
+.email-error {
+  background-color: #fdecea;
+  color: #e74c3c;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+}
+
+html.dark .email-error {
+  background-color: #4a2f33;
+  color: #ff6b6b;
+  border-color: #ff8787;
+}
+
+
+.email-success {
+  text-align: center;
+  padding: 2rem;
+  color: #1b2c45;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+}
+
+html.dark .email-success {
+  color: #dddaf0;
+}
+
+.email-success h3 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.email-success p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.emoji-bounce {
+  font-size: 3rem;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

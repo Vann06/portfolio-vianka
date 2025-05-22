@@ -3,7 +3,7 @@ import Desktop from "../components/Desktop";
 import AboutWindow from "../windows/AboutWindow";
 import ContactWindow from "../windows/ContactWindow";
 import ResumeWindow from "../windows/ResumeWindow";
-import ProjectsWindow from "../windows/ProjectsWindow";
+import ProyectsWindow from "../windows/ProyectsWindow";
 import EmailWindow from "../windows/EmailWindow";
 import { useContext } from "react";
 import { WindowContext } from "../context/WindowContext";
@@ -15,7 +15,7 @@ function HomeView() {
   const windowComponents = {
     about: AboutWindow,
     links: ContactWindow,
-    work: ProjectsWindow,
+    work: ProyectsWindow,
     resume: ResumeWindow,
     contact: EmailWindow,
   };

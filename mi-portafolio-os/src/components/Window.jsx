@@ -20,9 +20,9 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
   return (
     <Rnd
       default={{
-        x: 80,
+        x: 200,
         y: 100,
-        width: 500,
+        width: 550,
         height: 500,
       }}
       minWidth={300}
