@@ -53,7 +53,7 @@ function ResumeWindow({ zIndex }) {
           </div>
 
           <a
-            href="/cv.pdf"
+            href={`${process.env.PUBLIC_URL}/cv.pdf`}
             download
             onClick={() => closeWindow("resume")}
             className="btn"
