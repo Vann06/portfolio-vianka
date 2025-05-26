@@ -5,7 +5,6 @@ import { WindowContext } from "../context/WindowContext";
 import WindowContent from "../components/WindowContent";
 
 
-
 function ProyectsWindow({ zIndex }) {   
     const { closeWindow, bringToFront } = useContext(WindowContext);    
 
@@ -20,22 +19,25 @@ function ProyectsWindow({ zIndex }) {
             <Proyect
             title="SOL Store"
             description="Tienda e-commerce con sistema de inventario, autenticación de usuarios y administración con Laravel y Vue.js."
-            tech="Laravel, Vue, PostgreSQL, Docker"
-            link="https://github.com/Vann06/sol-store"
+            tech="Laravel, Vue, PostgreSQL, Docker, Blade, PHP, CSS, JavaScript, "
+            link="https://github.com/Vann06/sol-store-ecommerce"
+            image="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748287884/14e75f3a-1b1f-430e-ab03-ff1e50b35903.png"
             />
 
             <Proyect
-            title="Stadium Simulator"
-            description="Simulador de concurrencia para reservas de asientos en un estadio usando Python y PostgreSQL."
-            tech="Python, psycopg2, SQL, Streamlit"
-            link="https://github.com/Vann06/stadium-concurrency"
+            title="Miniso E-commerce"
+            description="E-commerce de Miniso con carrito de compras, autenticación de usuarios y administración de productos usando MERN stack."
+            tech="React, JavaScript, CSS, HTML, MongoDB, Node.js, Express"
+            link="https://github.com/Vann06/miniso-ecommerce"
+            image="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748288111/79eb48d3-54f8-4071-9501-d0a8a915fc2b.png"
             />
 
             <Proyect
-            title="Portfolio OS"
-            description="Escritorio interactivo con ventanas flotantes al estilo de un sistema operativo, modo oscuro y animaciones."
-            tech="React, react-rnd, EmailJS, Cloudinary"
-            link="https://github.com/Vann06/portfolio-os"
+            title="Tuto!"
+            description="Aplicación móvil para encontrar tutores y clases particulares, desarrollada tanto para tutores como para estudiantes"
+            tech="Android Studio, Kotlin"
+            link="https://github.com/Vann06/TutorMatch"
+            image=""
             />
 
             

@@ -25,6 +25,9 @@ html.dark body {
   text-align: left;
   color: #1b2c45;
   padding: 1.5rem 2rem;
+  overflow-y: auto;
+  overflow-x: visible; 
+  position: relative; 
 }
 
 /* Dark mode */

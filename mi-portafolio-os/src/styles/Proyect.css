@@ -1,0 +1,81 @@
+.proyect-card {
+  position: relative;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: visible;
+  transition: border 0.3s ease;
+}
+
+/* DARK & LIGHT MODE */
+.proyect-card.light {
+  background: #ffffff;
+  border: 2px solid #cce5ff;
+}
+.proyect-card.dark {
+  background: #292145;
+  border: 2px solid #a585ff;
+}
+
+.proyect-card.light:hover {
+  border-color: #70b0e0;
+}
+.proyect-card.dark:hover {
+  border-color: #d7b8ff;
+}
+
+.proyect-info h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.proyect-info p {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+.proyect-info .tech {
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.proyect-info a {
+  font-weight: bold;
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.preview-floating {
+  position: fixed; /* ⬅️ asegura que siempre se vea encima */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.preview-floating.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.preview-floating img {
+  width: 420px;
+  max-width: 80vw;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(189, 149, 255, 0.6); 
+  animation: glowPop 0.3s ease;
+}
+
+@keyframes glowPop {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
