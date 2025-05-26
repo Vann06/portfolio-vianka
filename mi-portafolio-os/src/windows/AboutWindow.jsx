@@ -13,7 +13,8 @@ function AboutWindow({ zIndex }) {
       zIndex={zIndex}
       onFocus={() => bringToFront("about")}
     >
-        <img
+      <div  className="window-center">
+         <img
           src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1747715633/Profile2_bumxj0.jpg"
           alt="Profile"
           style={{
@@ -41,8 +42,8 @@ function AboutWindow({ zIndex }) {
 
         <hr className="my-4 border-gray-400 dark:border-gray-600" />
 
-
-        <section>
+      </div>
+      <section>
           <h3 style={{ fontWeight: "bold" }}>Education</h3>
           <p>Universidad del Valle – Ingeniería en Computación</p>
           <p>(2023 - Actualidad)</p>
@@ -50,7 +51,7 @@ function AboutWindow({ zIndex }) {
           <p>(2011-2022)</p>
 
         </section>
-
+      
         <section style={{ marginTop: "1rem" }}>
           <h3 style={{ fontWeight: "bold" }}>Skills</h3>
           <ul style={{ listStyle: "disc", textAlign: "left", paddingLeft: "1.5rem" }}>

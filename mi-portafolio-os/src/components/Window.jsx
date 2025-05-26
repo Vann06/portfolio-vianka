@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 
 function Window({ title, children, onClose, zIndex = 10, onFocus }) {
   const [isDark, setIsDark] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const update = () => {
@@ -17,73 +24,64 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <Rnd
-      default={{
-        x: 200,
-        y: 100,
-        width: 550,
-        height: 500,
-      }}
-      minWidth={300}
-      maxHeight={700}
-      bounds="window"
-      //dragHandleClassName="handle"
-      style={{ zIndex }}
-      onMouseDown={onFocus}
-    >
-      <div
-        style={{
-          background: isDark
-            ? "linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184))"
-            : "white",
-          borderRadius: "12px",
-          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.25)",
-          border: isDark ? "2px solid #dddaf0" : "2px solid #ccc",
-          color: isDark ? "#dddaf0" : "#000",
-          //overflow: "hidden",
-          fontFamily: "'Segoe UI', 'Inter', sans-serif",
-        }}
+  // 💻 DESKTOP MODE
+  if (!isMobile) {
+    return (
+      <Rnd
+        default={{ x: 200, y: 100, width: 550, height: 500 }}
+        minWidth={300}
+        maxHeight={700}
+        bounds="window"
+        style={{ zIndex }}
+        onMouseDown={onFocus}
       >
-        {/* Barra superior */}
-      <div className="window-container">
-        <div className="window-header handle"
-          style={{
-          backgroundColor: isDark ? "#222024" : "#346285",
-          color: "white",
-          padding: "0.75rem 1rem",
-          borderTopLeftRadius: "12px",
-          borderTopRightRadius: "12px",
-          borderBottom: isDark ? "2px solid #dddaf0" : "2px solid #444957",
-          fontWeight: "bold",
-          fontFamily: "monospace",
-          textAlign: "left",
-        }}
-        >
-          <span>{title}</span>
-          {onClose && (
-            <button onClick={onClose} className="window-close" style={{
-                color: "white", 
-              }}>[x]</button>
-                      )}
-                    </div>
-
-
-        <div className="window-content" style={{
-        textAlign: "center",
-        color: isDark ? "#dddaf0" : "#1b2c45",
-        fontFamily: "'Segoe UI', 'Inter', sans-serif",
-        padding: "1.5rem 2rem",
-        lineHeight: 1.6,
-        fontSize: "1rem",
-      }}>
-          
-          {children}
+        <div className={`window-container ${isDark ? "dark" : ""}`}>
+          <div className="window-header handle">
+            <span>{title}</span>
+            {onClose && (
+              <button onClick={onClose} className="window-close">
+                [x]
+              </button>
+            )}
+          </div>
+          <div className="window-content">{children}</div>
         </div>
+      </Rnd>
+    );
+  }
+
+  // 📱 MOBILE MODE
+  return (
+    <div
+      className={`mobile-window ${isDark ? "dark" : ""}`}
+      style={{
+        zIndex,
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        maxHeight: "90vh",
+        overflowY: "auto",
+        borderTopLeftRadius: "16px",
+        borderTopRightRadius: "16px",
+        transition: "transform 0.3s ease",
+      }}
+    >
+      <div className="window-header handle">
+        <span>{title}</span>
+        {onClose && (
+          <button onClick={onClose} className="window-close">
+            <img
+              src="/assets/icon_close_white.png"
+              alt="close"
+              width="24"
+              style={{ pointerEvents: "none" }}
+            />
+          </button>
+        )}
       </div>
-        
-      </div>
-    </Rnd>
+      <div className="window-content">{children}</div>
+    </div>
   );
 }
 

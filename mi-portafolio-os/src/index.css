@@ -142,3 +142,90 @@ html.dark .window-content hr {
   border-top-color: #444;
 }
 
+
+/* Ventana general */
+.window-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border: 2px solid #ccc;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  color: #1b2c45;
+}
+
+html.dark .window-container {
+  background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184));
+  border-color: #dddaf0;
+  color: #dddaf0;
+}
+
+/* Encabezado */
+.window-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  border-bottom: 2px solid #444957;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: #346285;
+  color: white;
+  cursor: move;
+}
+
+html.dark .window-header {
+  background-color: #222024;
+  border-bottom: 2px solid #dddaf0;
+  color: white;
+}
+
+/* Contenido */
+.window-content {
+  padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-y: auto;
+  max-height: 420px;
+}
+
+html.dark .window-content {
+  color: #dddaf0;
+}
+
+/* Botón cerrar */
+.window-close {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.window-close:hover {
+  transform: scale(1.1);
+}
+.window-close:active {
+  transform: scale(0.95);
+}
+
+/* Móvil */
+.mobile-window {
+  background: white;
+  box-shadow: 0 -8px 20px rgba(0,0,0,0.3);
+  border: 2px solid #ccc;
+}
+html.dark .mobile-window {
+  background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184));
+  border-color: #dddaf0;
+}
+
+
+.window-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
