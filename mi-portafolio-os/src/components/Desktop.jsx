@@ -110,7 +110,7 @@ function Desktop() {
           fontSize: "1.2rem", 
           color: isDark ? "white" : "#1b2c45"
            }} className="dark:text-gray-300">
-          illustrator, animator, and developer
+          Fullstack dev, Ux Designer, and Illustrator
         </p>
 
         {/* Iconos */}

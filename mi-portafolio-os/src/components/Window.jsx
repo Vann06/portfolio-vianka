@@ -1,5 +1,6 @@
 import { Rnd } from "react-rnd";
 import { useState, useEffect } from "react";
+import closeIcon from '../assets/icon_close_white.png'
 
 function Window({ title, children, onClose, zIndex = 10, onFocus }) {
   const [isDark, setIsDark] = useState(false);
@@ -24,7 +25,7 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
     return () => observer.disconnect();
   }, []);
 
-  // 💻 DESKTOP MODE
+  // DESKTOP MODE
   if (!isMobile) {
     return (
       <Rnd
@@ -50,7 +51,7 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
     );
   }
 
-  // 📱 MOBILE MODE
+  // MOBILE MODE
   return (
     <div
       className={`mobile-window ${isDark ? "dark" : ""}`}
@@ -72,7 +73,7 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
         {onClose && (
           <button onClick={onClose} className="window-close">
             <img
-              src="/assets/icon_close_white.png"
+              src={closeIcon}
               alt="close"
               width="24"
               style={{ pointerEvents: "none" }}
