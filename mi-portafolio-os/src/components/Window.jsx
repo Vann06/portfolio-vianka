@@ -81,8 +81,6 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
           {children}
         </div>
       </div>
-
-
         
       </div>
     </Rnd>
