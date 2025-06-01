@@ -1,10 +1,12 @@
 import { Rnd } from "react-rnd";
 import { useState, useEffect } from "react";
 import closeIcon from '../assets/icon_close_white.png'
+import useSound from "use-sound";
 
 function Window({ title, children, onClose, zIndex = 10, onFocus }) {
   const [isDark, setIsDark] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [playClose] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/close_uufjve.mp3", {volume:1});
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -40,7 +42,11 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
           <div className="window-header handle">
             <span>{title}</span>
             {onClose && (
-              <button onClick={onClose} className="window-close">
+              <button 
+              onClick={() => {
+                playClose();
+                onClose();
+              }} className="window-close">
                 [x]
               </button>
             )}
@@ -71,7 +77,10 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
       <div className="window-header handle">
         <span>{title}</span>
         {onClose && (
-          <button onClick={onClose} className="window-close">
+          <button onClick={() => {
+                playClose();
+                onClose();
+              }} className="window-close">
             <img
               src={closeIcon}
               alt="close"

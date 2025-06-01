@@ -5,12 +5,12 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: 'Segoe UI', 'Inter', sans-serif; 
 }
-
-
-body,html,#root {
+html, body, #root {
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
 }
+
+
 html.dark body {
   background-color: #1e1e2f;
   color: #fff;

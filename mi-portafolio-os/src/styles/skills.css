@@ -1,0 +1,38 @@
+.skills-wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.skills-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background: var(--tag-bg, white);
+  color: var(--tag-text, #222);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+html.dark .skill-tag {
+  background: #1e1e2f;
+  color: #dddaf0;
+}

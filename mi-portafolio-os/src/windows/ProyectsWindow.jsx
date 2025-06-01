@@ -3,6 +3,7 @@ import Window from "../components/Window";
 import Proyect from "../components/Proyect"
 import { WindowContext } from "../context/WindowContext";
 import WindowContent from "../components/WindowContent";
+import SkillGrid from "../components/SkillGrid";
 
 
 function ProyectsWindow({ zIndex }) {   
@@ -15,6 +16,14 @@ function ProyectsWindow({ zIndex }) {
             onClose={() => closeWindow("work")}
             onFocus={() => bringToFront("work")}
         >
+            <h3 style= {{ 
+                marginTop: "2rem",
+                fontWeight:"bold",
+                fontSize: "1.5rem"}}>
+                    Tech Stack 
+            </h3>
+            <SkillGrid/>
+
 
             <Proyect
             title="SOL Store"

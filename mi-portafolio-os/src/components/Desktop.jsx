@@ -12,12 +12,14 @@ import icon_contact_dark from "../assets/icon_contact_dark.webp";
 import icon_cv from "../assets/icon_cv_light.webp";
 import icon_cv_dark from "../assets/icon_cv_dark.webp";
 
+import useSound from "use-sound";
 import linkedin from "../assets/linkedin.svg";
 import instagram from "../assets/instagram.svg";
 import github from "../assets/github.svg";
 function Desktop() {
   const[isDark, setIsDark] = useState(false);
   const {openWindow} = useContext(WindowContext);
+  const [playOpen] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/open_f89xtv.mp3", {volume: 1});
 
   useEffect(() => {
     const root = document.documentElement;
@@ -79,9 +81,9 @@ function Desktop() {
         style={{
           backgroundColor: isDark ? "#222024" : "#346285",
           color: "white",
-          padding: "0.75rem 1rem",
-          borderTopLeftRadius: "12px",
-          borderTopRightRadius: "12px",
+          padding: "0.8rem 1rem",
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
           borderBottom: isDark ? "2px solid #dddaf0" : "2px solid  rgba(53, 123, 167, 0.85)",
           fontWeight: "bold",
           fontFamily: "monospace",
@@ -129,7 +131,9 @@ function Desktop() {
               title={item.title}
               iconLight={item.iconLight}
               iconDark={item.iconDark}
-              onClick={() => openWindow(item.title)}
+              onClick={() =>  {
+                playOpen();
+                openWindow(item.title)}}
             />
           ))}
         </div>

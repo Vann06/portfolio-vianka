@@ -19,7 +19,8 @@
     "react-dom": "^19.1.0",
     "react-draggable": "^4.4.6",
     "react-rnd": "^10.5.2",
-    "react-wavify": "^1.11.1"
+    "react-wavify": "^1.11.1",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

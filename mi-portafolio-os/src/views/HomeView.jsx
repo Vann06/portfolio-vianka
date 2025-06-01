@@ -21,7 +21,13 @@ function HomeView() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-beige dark:bg-[#1e1e2f] text-gray-900 dark:text-white transition-colors duration-300 overflow-hidden">
+    <div 
+    style= {{
+        overflow: "hidden",
+        width: "100%",
+        
+      }}
+    className="relative min-h-screen w-full bg-beige dark:bg-[#1e1e2f] text-gray-900 dark:text-white transition-colors duration-300 overflow-hidden">
       <WaveBackground />
 
       {windows.map((win) => {
