@@ -1,41 +1,41 @@
-import {React, useState, useEffect} from  "react";
+import {useState, useRef, useEffect } from "react";
 import useSound from "use-sound";
+import {getNextIndex, notes} from "../utils/pianoNotes";
+import { useSoundContext } from "../context/SoundContext";
 import "../styles/SkillTag.css";
 
-//contador
-let hoverIndex = 0;
 
-const pianoNotes= [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-];
+function SkillTag({ label}) {
+  const soundsRef = useRef([]);
 
+// Cargar sonidos 
+    useEffect(() => {
+        soundsRef.current = notes.map(note => 
+            new Audio(note)
+        );
+    } ,[]);
 
-function SkillTag({label}){
-    const [note, setNote] = useState(pianoNotes[0]);
-    const [play] = useSound(note, {volume:0.5});
+    const {isMuted} = useSoundContext();
 
-    const handleHover = () => {
-        const sound = pianoNotes[hoverIndex % pianoNotes.length];
-        setNote(sound);
-        play();
-        hoverIndex++;
-    };
+  const handleHover = () => {
+    if (isMuted) return;
+    const index = getNextIndex();
+    const sound = soundsRef.current[index];
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play();
+    }
+  };
 
-    return(
-        <div
-        className="skill-tag"
-        onMouseEnter={handleHover}
-        title={label.name}
-        >
-            <img src={label.src} alt={label.name}/>
-        </div>
-    );
+  return (
+    <div
+      className="skill-tag"
+      onMouseEnter={handleHover}
+      title={label.name}
+    >
+      <img src={label.src} alt={label.name} />
+    </div>
+  );
 }
 
 export default SkillTag;

@@ -16,10 +16,19 @@ import useSound from "use-sound";
 import linkedin from "../assets/linkedin.svg";
 import instagram from "../assets/instagram.svg";
 import github from "../assets/github.svg";
+import { useSoundContext } from "../context/SoundContext";
+
 function Desktop() {
   const[isDark, setIsDark] = useState(false);
   const {openWindow} = useContext(WindowContext);
   const [playOpen] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/open_f89xtv.mp3", {volume: 1});
+
+  const{isMuted} = useSoundContext();
+
+  const handleClick = () => {
+    if (!isMuted) playOpen();
+    openWindow(windowName);
+  }
 
   useEffect(() => {
     const root = document.documentElement;
@@ -132,8 +141,9 @@ function Desktop() {
               iconLight={item.iconLight}
               iconDark={item.iconDark}
               onClick={() =>  {
-                playOpen();
-                openWindow(item.title)}}
+                  if (!isMuted) playOpen();   
+                  openWindow(item.title);     
+              }}
             />
           ))}
         </div>

@@ -1,34 +1,31 @@
 .skill-tag {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 0.5rem;
-  margin: 6px;
-  padding: 0.5rem 1rem;
+  background-color: #ffffff;
   border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: default;
   font-weight: 500;
-  background: white;
-  color: #1b2c45;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease;
 }
 
 .skill-tag:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .skill-tag img {
   width: 24px;
   height: 24px;
-  object-fit: contain;
 }
 
-
 html.dark .skill-tag {
-  background: #1e1e2f;
+  background-color: #1e1e2f;
   color: #dddaf0;
 }
 
-html.dark, .skill-tag:hover{
-    box-shadow: 4px 6px 10px rgba(173, 157, 242,0.5);
+html.dark .skill-tag:hover {
+  box-shadow: 4px 6px 20px rgba(173, 157, 242, 0.5);
 }

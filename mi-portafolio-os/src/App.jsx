@@ -3,6 +3,8 @@ import HomeView from "./views/HomeView";
 import ThemeToggle from "./components/ThemeToggle";
 import { WindowProvider } from "./context/WindowContext";
 import Starfield from "./components/StarField";
+import {SoundProvider} from "./context/SoundContext";
+import MuteToggle from "./components/MuteToggle";
 
 function App() {
   const [isDark, setIsDark] = useState(
@@ -26,10 +28,14 @@ function App() {
   return (
     <>
       {isDark && <Starfield />}
-      <WindowProvider>
-        <ThemeToggle />
-        <HomeView />
-      </WindowProvider>
+      <SoundProvider>
+        <WindowProvider>
+          <ThemeToggle />
+          <MuteToggle/>
+          <HomeView />
+       </WindowProvider>
+      </SoundProvider>
+      
     </>
   );
 }

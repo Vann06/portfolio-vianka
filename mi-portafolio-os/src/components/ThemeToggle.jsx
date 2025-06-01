@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AnimatedIcon from "./AnimatedIcon";
 import useSound from "use-sound";
+import { useSoundContext } from "../context/SoundContext";
 
 import lightIcon from "../assets/dark_mode_light.webp"; 
 import darkIcon from "../assets/dark_mode_dark.webp";   
@@ -10,6 +11,8 @@ function ThemeToggle() {
   //Soniditos probando 
   const [playDark] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748741105/dark_g3kjaz.mp3", {volume:1});
   const [playLight] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748741213/light_hfjy10.mp3", {volume:1});
+  const {isMuted} = useSoundContext();
+
 
 useEffect(() => {
   setIsDark(document.documentElement.classList.contains("dark"));
@@ -26,7 +29,7 @@ useEffect(() => {
   setIsDark(root.classList.contains("dark"));
   const nowDark = root.classList.contains("dark");
 
-
+  if (isMuted) return;
   if (nowDark) {
     playDark();
   } else {
