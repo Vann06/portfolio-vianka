@@ -10,10 +10,10 @@ import github from "../assets/github.svg";
 import github_dark from "../assets/github_dark.svg";
 import discord from "../assets/icon_discord.webp";
 import discord_dark from "../assets/icon_discord_dark.webp";
-import instagram from "../assets/icon_ig.webp";
-import instagram_dark from "../assets/icon_ig_dark.webp";
-import twitter from "../assets/icon_twitter.webp";
-import twitter_dark from "../assets/icon_twitter_dark.webp";
+import instagram_dark from "../assets/icon_ig.webp";
+import instagram from "../assets/icon_ig_dark.webp";
+import twitter_dark from "../assets/icon_twitter.webp";
+import twitter from "../assets/icon_twitter_dark.webp";
 import youtube from "../assets/icon_yt.webp";
 import youtube_dark from "../assets/icon_yt_dark.webp";
 

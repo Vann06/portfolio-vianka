@@ -46,7 +46,7 @@ function ProyectsWindow({ zIndex }) {
             description="Aplicación móvil para encontrar tutores y clases particulares, desarrollada tanto para tutores como para estudiantes"
             tech="Android Studio, Kotlin"
             link="https://github.com/Vann06/TutorMatch"
-            image=""
+            image="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748960260/af42c515-2fd7-4a9d-8dee-fad3a11502b5.png"
             />
 
             

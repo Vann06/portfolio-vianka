@@ -81,7 +81,11 @@ const dev = [
   {
     name:"MySQL",
     src:"https://www.svgrepo.com/show/355133/mysql.svg"
-  }
+  },
+  {
+    name:"Kotlin",
+    src:"https://www.svgrepo.com/show/353980/kotlin.svg"
+  },
 ];
 
 function SkillGrid() {
