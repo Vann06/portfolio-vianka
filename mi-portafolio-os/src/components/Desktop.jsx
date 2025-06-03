@@ -161,7 +161,7 @@ function Desktop() {
         <a href="https://www.linkedin.com/in/vianka-castro-121a90364/" target="_blank" rel="noopener noreferrer">
           <img src={linkedin} alt="Linkedin" style={iconStyle} />
         </a>
-        <a href= "https://www.github.com/Vann06" target="_blank" rel="noopener noreferrer">
+        <a href= "https://github.com/Vann06/portfolio-vianka" target="_blank" rel="noopener noreferrer">
           <img src={github} alt="Github" style={iconStyle} />
         </a>
         <a href="https://www.instagram.com/copy._.cat/" target="_blank" rel="noopener noreferrer">
