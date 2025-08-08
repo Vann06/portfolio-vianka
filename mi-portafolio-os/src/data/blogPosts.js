@@ -1,6 +1,120 @@
 export const blogPosts = [
+  // NUEVO POST pasa a ser el primero (id:1). Eliminamos el antiguo post de marca (antes id:3) para evitar slug duplicado.
   {
     id: 1,
+    slug: "como-soy-como-marca",
+    keywords: ["marca personal", "personal brand", "tecnología con propósito", "technology with purpose"],
+    pattern: "F",
+    highlightSentences: [
+      "Mi marca personal nace en la intersección entre tecnología y humanidad.",
+      "My personal brand is born at the intersection between technology and humanity.",
+      "Mi compromiso es seguir creando soluciones que inspiren y conecten.",
+      "My commitment is to continue creating solutions that inspire and connect."
+    ],
+    links: {
+      internal: [
+        { label: "Mi Portafolio", to: "desktop-os-portfolio" }
+      ],
+      external: [
+        { label: "Tendencias globales en tecnología con propósito", href: "https://www.un.org/es/un75/impact-digital-technologies" },
+        { label: "UX y Dev con propósito", href: "https://medium.com/design-bootcamp/making-technology-work-for-everyone-with-assistive-tech-in-ux-f017ae6e20e0" }
+      ]
+    },
+    cta: {
+      text: {
+        en: "Discover my vision and how I combine logic with empathy.",
+        es: "Descubre mi visión y cómo combino la lógica con la empatía."
+      },
+      url: "https://github.com/Vann06/portfolio-vianka"
+    },
+    title: {
+      en: "How I Am as a Brand: Technology with Purpose",
+      es: "Cómo soy como marca: Tecnología con propósito"
+    },
+    summary: {
+      en: "My personal brand combines logic, creativity, and empathy to create technology that matters.",
+      es: "Mi marca personal combina lógica, creatividad y empatía para crear tecnología que importa."
+    },
+    content: {
+      en: `**The way you work is your calling card.** It's not just about what you do, but **how you do it** and the impact you create. In my case, my personal brand is born at the **intersection between technology and humanity**, combining logic, creativity, and empathy to create purposeful solutions.
+
+From my experience in **Computer Science**, I've learned that a system is not only measured by its efficiency, but by **how it transforms the life of the person who uses it**. For me, each project is a bridge between the technical and the human. I don't just want something to work: I want it to **connect, inspire, and leave a mark**.
+
+## My essence as a brand
+**Listening before proposing** is one of my key values. I believe every solution starts by understanding context, people, and real needs. This strategic vision lets me **design scalable and sustainable projects** without losing sight of user experience.
+
+My approach blends **technical rigor** with **creative intuition**. That means I can **structure complex ideas** and turn them into clear, elegant, usable experiences. As a brand I convey **trust, vision, and commitment to quality**.
+
+## What sets me apart
+
+## Human perspective
+I prioritize user experience in every decision. Technology should feel like it “gets” the person using it.
+
+## Long-term vision
+I design solutions that work today and evolve tomorrow without losing clarity or quality.
+
+## Balance: analysis + empathy
+Logic guides structure; empathy guides relevance. That mix makes solutions meaningful.
+
+## Synthesis
+These pillars allow me to **create technology that matters**. I don’t build just to build: every line of code fits a **greater purpose**.
+
+## The impact I aim to create
+My goal is not only to deliver a functional product, but to ensure **the person using it feels it was designed for them**. When technology is empathetic, **it builds trust and loyalty**. That is the mark I want to leave.
+
+I want my work recognized not only for what it does, but for the **experience and emotional value** it delivers. That is the promise of my personal brand: **uniting technical precision with human sensitivity**.
+
+**Building a personal brand is a journey.** Every project, interaction, and decision is part of that narrative.
+
+**My commitment is to continue creating solutions that inspire and connect**, because the best brand is the one that leaves a story worth remembering.
+
+También puedes leer:
+- [Portfolio Repository](https://github.com/Vann06/portfolio-vianka)
+- [Global trends in technology with purpose](https://www.un.org/es/un75/impact-digital-technologies)`,
+      es: `**La forma en la que trabajas es tu carta de presentación.** No se trata solo de lo que haces, sino de **cómo lo haces** y el impacto que generas. Mi marca personal nace en la **intersección entre tecnología y humanidad**, combinando lógica, creatividad y empatía para crear soluciones con propósito.
+
+Desde mi experiencia en **Computer Science**, he aprendido que un sistema no se mide solo por su eficiencia, sino por **cómo transforma la vida de quien lo utiliza**. Cada proyecto es un puente entre lo técnico y lo humano. No quiero solo que funcione: quiero que **conecte, inspire y deje huella**.
+
+## Mi esencia como marca
+**Escuchar antes de proponer** es un valor clave. Toda solución parte de comprender contexto, personas y necesidades reales. Esa mirada estratégica me permite **diseñar proyectos escalables y sostenibles** sin perder la experiencia del usuario.
+
+Mi enfoque combina **rigor técnico** con **intuición creativa**. Puedo **estructurar ideas complejas** y convertirlas en experiencias claras, elegantes y usables. Como marca transmito **confianza, visión y compromiso con la calidad**.
+
+## Lo que me diferencia
+
+## Perspectiva humana
+Priorizo siempre la experiencia de la persona que interactúa con la solución.
+
+## Visión a largo plazo
+Pienso en cómo el producto evoluciona sin romper su coherencia.
+
+## Equilibrio análisis / empatía
+La lógica estructura; la empatía le da sentido y conexión emocional.
+
+## Síntesis
+Estos pilares me permiten **crear tecnología que importa**. No desarrollo por desarrollar: cada línea responde a un **objetivo mayor**.
+
+## Impacto que busco generar
+Mi meta no es solo entregar un producto funcional, sino lograr que **quien lo use sienta que fue diseñado para él**. Cuando la tecnología es empática, **genera confianza y fidelidad**. Esa es la huella que quiero dejar.
+
+Quiero que mi trabajo se reconozca no solo por lo que hace, sino por la **experiencia y el valor emocional** que entrega. Esa es la promesa: **unir precisión técnica y sensibilidad humana**.
+
+**Construir una marca personal es un camino.** Cada proyecto, interacción y decisión alimenta esa narrativa.
+
+**Mi compromiso es seguir creando soluciones que inspiren y conecten**, porque la mejor marca deja una historia que vale la pena recordar.
+
+También puedes leer:
+- [Repositorio del Portafolio](https://github.com/Vann06/portfolio-vianka)
+- [Tendencias globales en tecnología con propósito](https://www.un.org/es/un75/impact-digital-technologies)`
+    },
+    image: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1754626661/yio_vcyu3i.jpg",
+    date: "2025-08-07",
+    tags: ["Marca Personal", "Personal Brand", "Tecnología", "Technology", "Branding"],
+    readTime: "5 min"
+  },
+  // Re-numero antiguos posts: antes 1→2, 2→3
+  {
+    id: 2,
     slug: "desktop-os-portfolio",
     keywords: ["react portfolio", "retro desktop", "window system"],
     pattern: "F",
@@ -9,12 +123,8 @@ export const blogPosts = [
       "Uno de los mayores desafíos fue crear un sistema de ventanas realista con ventanas arrastrables, manejo adecuado de z-index y animaciones suaves."
     ],
     links: {
-      internal: [
-        { label: "Mi Viaje Full Stack", to: "post-2" }
-      ],
-      external: [
-        { label: "React Docs", href: "https://react.dev" }
-      ]
+      internal: [{ label: "Mi Viaje Full Stack", to: "post-3" }],
+      external: [{ label: "React Docs", href: "https://react.dev" }]
     },
     cta: {
       text: {
@@ -61,7 +171,7 @@ Uno de los mayores desafíos fue crear un sistema de ventanas realista con venta
     readTime: "5 min"
   },
   {
-    id: 2,
+    id: 3,
     slug: "full-stack-journey",
     keywords: ["full stack journey", "career growth", "developer path"],
     pattern: "L",
@@ -70,12 +180,8 @@ Uno de los mayores desafíos fue crear un sistema de ventanas realista con venta
       "La experiencia del usuario debe impulsar las decisiones técnicas"
     ],
     links: {
-      internal: [
-        { label: "Desktop OS Portfolio", to: "post-1" }
-      ],
-      external: [
-        { label: "Laravel Docs", href: "https://laravel.com" }
-      ]
+      internal: [{ label: "Desktop OS Portfolio", to: "post-2" }],
+      external: [{ label: "Laravel Docs", href: "https://laravel.com" }]
     },
     cta: {
       text: {
@@ -116,82 +222,5 @@ Hoy trabajo con tecnologías como React, Laravel, Vue.js y varias bases de datos
     date: "2025-01-10",
     tags: ["Career", "Full Stack", "Development"],
     readTime: "4 min"
-  },
-  {
-    id: 3,
-    slug: "como-soy-como-marca",
-    keywords: ["marca personal", "branding personal", "identidad profesional", "claridad", "consistencia"],
-    pattern: "F",
-    highlightSentences: [],
-    links: {
-      internal: [
-        { label: "Desktop OS Portfolio", to: "post-1" },
-        { label: "Mi Viaje Full Stack", to: "post-2" }
-      ],
-      external: [
-        { label: "Personal Branding (HubSpot)", href: "https://blog.hubspot.es/marketing/personal-branding" }
-      ]
-    },
-    cta: {
-      text: {
-        es: "¿Te identificas? Conectemos y construyamos algo con sentido.",
-        en: "Resonate with this? Let's connect and build with intent."
-      },
-      url: "https://www.linkedin.com/"
-    },
-    title: {
-      es: "Cómo construyo mi marca personal: claridad, empatía y consistencia",
-      en: "How I Shape My Personal Brand: Clarity, Empathy & Consistency"
-    },
-    summary: {
-      es: "Marco consciente para diseñar una marca personal útil y coherente.",
-      en: "A conscious framework for a useful, coherent personal brand."
-    },
-    content: {
-      es: `**Mi marca personal es una promesa de coherencia verificable.** Defino una identidad útil combinando claridad, empatía estratégica y disciplina visible.
-**Claridad elimina fricción cognitiva y acelera decisiones.** Simplifico sin empobrecer: restructuro hasta que una frase autónoma sostenga la idea central.
-**Empatía estratégica conecta intención con experiencia real.** Observo contexto, emoción y fricciones antes de proponer soluciones o cambios.
-**Disciplina visible construye confianza acumulada.** Entrego antes, documento razones y reduzco sorpresas operativas.
-**Uso frases completas en negrita para lectura escáner.** Si solo lees las negritas captas la estructura esencial del post.
-Mi proceso inicia destilando propósito en una línea neutral y global. Evito referencias locales de tiempo o espacio que rompan relevancia internacional.
-Transformo entradas dispersas (reuniones, métricas, feedback) en patrones accionables. Cada patrón necesita evidencia y utilidad explícita.
-Diseño comunicación con voz activa y economía léxica. Verbo fuerte, sujeto claro, resultado tangible.
-Decisión técnica o de contenido: defino criterio, alternativa descartada y motivo breve. Así reduzco deuda interpretativa futura.
-Errores que corto rápido: ambigüedad evitable, adornos vacíos, comparación sin contexto, listado sin síntesis final.
-**Mi diferenciación vive en traducir intención en arquitectura explicable.** No solo construyo; orquesto decisiones comprensibles.
-Marco operativo:
-1. Propósito en 12 palabras.
-2. Tres diferenciadores accionables (verificables por terceros).
-3. Señales consistentes: tono, estructura, tiempos de respuesta.
-4. Métrica de ajuste: claridad percibida o fricción reducida.
-5. Iteración documentada antes de ampliar alcance.
-Checklist interno antes de publicar: ¿Promesa inicial clara? ¿Cada párrafo agrega capa única? ¿Eliminar algo rompe el esqueleto? ¿El cierre devuelve energía?
-**La consistencia no es repetición rígida; es evolución alineada.** Ajusto forma sin traicionar principios base.
-Cierro como empecé: **una marca no se declara, se confirma con ciclos repetidos de claridad, empatía y disciplina.** Mi compromiso es sostener esa confirmación diaria.`,
-      en: `**My personal brand is a promise of verifiable coherence.** I shape a useful identity blending clarity, strategic empathy, and visible discipline.
-**Clarity removes cognitive friction and speeds decisions.** I simplify without dumbing down: restructuring until one autonomous sentence holds the core.
-**Strategic empathy links intent to real experience.** I map context, emotion, and friction before proposing changes.
-**Visible discipline compounds trust over time.** I deliver early, document rationale, and reduce operational surprises.
-**Full bold sentences enable scanner reading.** Reading only bold lines yields the structural spine of the post.
-I begin by distilling purpose into a neutral, globally legible line—no local time or place anchors reducing relevance.
-I transform scattered inputs (meetings, metrics, feedback) into patterns with evidence and explicit utility.
-Communication: active voice, lean wording, concrete outcomes. Strong verb, clear subject, tangible effect.
-A technical or content decision includes criterion, discarded option, and reason. This lowers future interpretative debt.
-Failure patterns I cut fast: avoidable ambiguity, ornamental fluff, contextless comparisons, lists without synthesis.
-**My differentiation lives in translating intent into explainable architecture.** I don't just build; I orchestrate understandable decisions.
-Operating loop:
-1. Purpose in ≤12 words.
-2. Three actionable differentiators (externally verifiable).
-3. Consistent signals: tone, structure, response cadence.
-4. Adjustment metric: perceived clarity or friction drop.
-5. Iterated documentation before scale.
-Internal publish checklist: clear initial promise? distinct layer each paragraph? cutting a block breaks structure? ending returns momentum?
-**Consistency is aligned evolution, not rigid repetition.** I adapt form without betraying core principles.
-Closing mirrors opening: **a brand is not claimed; it is confirmed through repeated cycles of clarity, empathy, and discipline.** My commitment is sustaining that confirmation daily.`
-    },
-    image: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1748235417/65209107-0a46-47eb-bf66-aca123ef191e.png",
-    date: "2025-01-22",
-    tags: ["Marca Personal", "Identidad", "Clarity"],
-    readTime: "6 min"
   }
 ];

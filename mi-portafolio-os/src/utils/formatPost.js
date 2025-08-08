@@ -1,92 +1,132 @@
 // Mejora: soporta frases completas en negrita y bold inline. Calcula ratio de bold.
 export function enrichPost(raw, lang = "es") {
-  const text = (raw.content?.[lang] || "").trim();
-  const wordCount = text ? text.split(/\s+/).length : 0;
+  const original = (raw.content?.[lang] || "").trim();
 
-  // Config: si quieres solo frases completas en bold, pon true
+  // 1. Bloque especial "También puedes leer:" (o "También puedes leer")
+  const lines = original.split(/\r?\n/);
+  const transformed = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (/^También puedes leer:?$/i.test(line.trim())) {
+      const items = [];
+      i++;
+      while (i < lines.length && /^\s*-\s*\[.+?\]\(.+?\)/.test(lines[i])) {
+        items.push(lines[i].trim());
+        i++;
+      }
+      transformed.push("::RES_TITLE::También puedes leer:");
+      items.forEach(it => {
+        // extraer label y url
+        const m = it.match(/-\s*\[(.+?)\]\((.+?)\)/);
+        if (m) transformed.push(`::RES_ITEM::${m[1]}|${m[2]}`);
+      });
+      continue;
+    }
+    transformed.push(line);
+    i++;
+  }
+
+  const text = transformed.join("\n");
+
+  // Headings ##
+  const marked = text.replace(/^##\s+(.+)$/gm, (_, t) => `\n::H::${t.trim()}\n`);
+
+  const wordCount = marked
+    .split(/\s+/)
+    .filter(w => w && !w.startsWith("::H::") && !w.startsWith("::RES_::") && !w.startsWith("::RES_TITLE::") && !w.startsWith("::RES_ITEM::"))
+    .length;
+
   const FULL_SENTENCE_ONLY = false;
 
-  // 1. Dividir en “sentencias” básicas (permitimos saltos de línea como separadores suaves)
-  const sentences = text
-    .split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ0-9])|[\r\n]{2,}/u)
+  const roughBlocks = marked
+    .split(/[\r\n]{2,}/u)
     .map(s => s.trim())
     .filter(Boolean);
 
+  const blocks = [];
+  roughBlocks.forEach(b => {
+    if (b.startsWith("::H::")) {
+      blocks.push({ type: "heading", raw: b.replace(/^::H::/, "") });
+    } else if (b.startsWith("::RES_TITLE::")) {
+      blocks.push({ type: "res-title", raw: b.replace(/^::RES_TITLE::/, "") });
+    } else if (b.startsWith("::RES_ITEM::")) {
+      // agrupar ítems consecutivos
+      const items = [];
+      let current = b;
+      let idx = roughBlocks.indexOf(b) + 1; // fallback simple
+      items.push(current);
+      // (Simplificamos: ya vienen separados en transformed, se procesan luego en un pass)
+      blocks.push({ type: "res-item", raw: b.replace(/^::RES_ITEM::/, "") });
+    } else if (b.startsWith("::RES_ITEM::")) {
+      // handled
+    } else {
+      blocks.push({ type: "text-group", raw: b });
+    }
+  });
+
   const warnings = [];
   let boldWordCount = 0;
+  const htmlParts = [];
 
-  const processed = sentences.map(original => {
-    let s = original;
-    const wordLen = s.split(/\s+/).length;
-    if (wordLen > 20) warnings.push(`>20 palabras: "${s.slice(0,70)}..." (${wordLen})`);
+  // Recolectar ítems de recursos
+  let resourceBuffer = [];
 
-    // Detecta si TODA la sentencia está envuelta en ** ... **
-    let fullBold = false;
-    if (/^\*\*(.+)\*\*$/.test(s)) {
-      fullBold = true;
-      s = s.replace(/^\*\*(.+)\*\*$/, "$1").trim();
+  const flushResources = () => {
+    if (resourceBuffer.length) {
+      const lis = resourceBuffer
+        .map(r => {
+          const [label, url] = r.split("|");
+            return `<li><a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a></li>`;
+        })
+        .join("");
+      htmlParts.push(
+        `<div class="more-links"><div class="more-links-title">También puedes leer:</div><ul>${lis}</ul></div>`
+      );
+      resourceBuffer = [];
     }
+  };
 
-    // Escapar HTML
-    let escaped = escapeHTML(s);
-
-    // Si se permite inline bold (FULL_SENTENCE_ONLY = false) procesar **texto**
-    if (!FULL_SENTENCE_ONLY) {
-      escaped = escaped.replace(/\*\*(.+?)\*\*/g, (m, inner) => {
-        const clean = inner.trim();
-        boldWordCount += clean.split(/\s+/).length;
-        return `<strong>${escapeHTML(clean)}</strong>`;
-      });
-    } else {
-      // Si estamos en modo solo-frases, eliminamos cualquier inline para evitar basura
-      escaped = escaped.replace(/\*\*(.+?)\*\*/g, "$1");
+  blocks.forEach(b => {
+    if (b.type === "heading") {
+      flushResources();
+      htmlParts.push(`<h3 class="post-section">${escapeHTML(b.raw)}</h3>`);
+      return;
     }
-
-    // Si la sentencia completa era bold, envolver TODO
-    if (fullBold) {
-      boldWordCount += wordLen;
-      escaped = `<strong>${escaped}</strong>`;
+    if (b.type === "res-title") {
+      flushResources(); // por si acaso
+      // el título se renderiza dentro del contenedor al flush; lo ignoramos aquí
+      return;
     }
-
-    return { html: escaped, raw: original };
+    if (b.type === "res-item") {
+      resourceBuffer.push(b.raw);
+      return;
+    }
+    if (b.type === "text-group") {
+      flushResources();
+      // Manejo de negritas dentro del grupo
+      let segment = escapeHTML(b.raw);
+      if (!FULL_SENTENCE_ONLY) {
+        segment = segment.replace(/\*\*(.+?)\*\*/g, (m, inner) => {
+          const clean = inner.trim();
+          boldWordCount += clean.split(/\s+/).length;
+          return `<strong>${escapeHTML(clean)}</strong>`;
+        });
+      } else {
+        segment = segment.replace(/\*\*(.+?)\*\*/g, "$1");
+      }
+      htmlParts.push(`<p>${segment}</p>`);
+    }
   });
-
-  // 2. Agrupar en párrafos (heurística aproximada 80–110 palabras)
-  const paragraphs = [];
-  let bucket = [];
-  let acc = 0;
-  processed.forEach(p => {
-    const w = p.raw.split(/\s+/).length;
-    bucket.push(p.html);
-    acc += w;
-    if (acc >= 85) {
-      paragraphs.push(bucket.join(" "));
-      bucket = [];
-      acc = 0;
-    }
-  });
-  if (bucket.length) paragraphs.push(bucket.join(" "));
+  flushResources();
 
   const boldRatio = wordCount ? +(boldWordCount / wordCount).toFixed(3) : 0;
-
-  if (warnings.length) {
-    console.warn(`[formatPost] Frases largas slug=${raw.slug} lang=${lang}`, warnings);
-  }
-  if (wordCount < 400 || wordCount > 600) {
-    console.warn(`[formatPost] Extensión fuera de 400-600 (${wordCount}) slug=${raw.slug} lang=${lang}`);
-  }
-  console.log(`[formatPost] slug=${raw.slug} lang=${lang} words=${wordCount} boldWords=${boldWordCount} ratio=${boldRatio}`);
-
-  // Si había ** en el texto y no resultó ningún <strong>, avisa
-  if (text.includes("**") && !paragraphs.some(p => p.includes("<strong>"))) {
-    console.warn(`[formatPost] Advertencia: se detectaron ** pero no se renderizó ninguna negrita. Revisa espacios o cierres en slug=${raw.slug} lang=${lang}`);
-  }
 
   return {
     ...raw,
     wordCount,
     boldRatio,
-    rendered: paragraphs
+    rendered: htmlParts
   };
 }
 
@@ -97,4 +137,7 @@ function escapeHTML(str) {
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#39;");
+}
+function escapeAttr(str){
+  return str.replace(/"/g,"&quot;");
 }
