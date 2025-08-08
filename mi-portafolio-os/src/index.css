@@ -1,4 +1,3 @@
-
 body {
   background-color: #f7f2eb;
   color: #333;
@@ -232,3 +231,94 @@ html.dark .mobile-window {
   align-items: center;
   text-align: center;
 }
+
+
+:root{
+  --card-bg: #faf8f5;
+  --card-border: #d4c5a9;
+  --ink: #2c2c2c;
+  --muted: #6b6b6b;
+  --accent: #346285;
+  --chip: #c4a47;
+}
+
+html.dark{
+  --card-bg: #362c63;
+  --card-border: #a78bfa;
+  --ink: #eeeafc;
+  --muted: #cdc7f9;
+  --accent: #8b5cf6;
+  --chip: #6b21a8;
+}
+
+.blog-shell{
+  padding: 1.5rem;
+  min-height: 400px;
+  background: var(--card-bg);
+  color: var(--ink);
+}
+
+.blog-head{
+  text-align:center;
+  margin-bottom: 1.2rem;
+  border-bottom: 2px dashed var(--card-border);
+  padding-bottom: 0.8rem;
+}
+
+.blog-chip{
+  background: var(--chip);
+  color: #fff;
+  border: 2px solid color-mix(in oklab, var(--chip), #000 20%);
+}
+
+.blog-list{
+  display: grid;
+  gap: 1.rem;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.blog-card{
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+}
+
+.blog-meta{
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed var(--card-border);
+  padding-top: 0.5rem;
+  color: var(--muted);
+}
+
+:root {
+  --card-bg: #fefdfb;
+  --card-border: #346285;
+  --ink: #1b2c45;
+  --muted: #6c7a89;
+  --accent: #346285;
+  --chip: #5ca8d6;
+}
+
+html.dark {
+  --card-bg: #362c63;
+  --card-border: #a78bfa;
+  --ink: #eeeafc;
+  --muted: #cdc7f9;
+  --accent: #8b5cf6;
+  --chip: #6b21a8;
+}
+
+.profile-photo { border:3px solid #c4a47c; }
+.dark .profile-photo { border-color:#cfc0f3; }

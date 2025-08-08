@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
-import WindowContent from "../components/WindowContent";
 
 function AboutWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
@@ -13,8 +12,8 @@ function AboutWindow({ zIndex }) {
       zIndex={zIndex}
       onFocus={() => bringToFront("about")}
     >
-      <div  className="window-center">
-         <img
+      <div className="window-center" style={{ padding: "1.5rem" }}>
+        <img
           src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1747715633/Profile2_bumxj0.jpg"
           alt="Profile"
           style={{
@@ -22,54 +21,172 @@ function AboutWindow({ zIndex }) {
             height: "120px",
             borderRadius: "50%",
             objectFit: "cover",
-            border: "2px solid #ccc",
-            marginBottom: "1rem",
+            marginBottom: "1.5rem",
             boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+            transition: "border-color .25s ease, box-shadow .25s ease"
           }}
+          className="profile-photo border-[3px] border-[#c4a47c] dark:border-[#C8A2C8]"
         />
 
-        <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+        <h1
+          style={{ fontSize: "1.6rem", fontWeight: "bold", marginBottom: "0.5rem" }}
+          className="dark:text-white"
+        >
           Vianka Castro
         </h1>
 
-        <p style={{ fontWeight: "500", marginBottom: "1rem" }}>
+        <p
+          style={{ fontWeight: 600, marginBottom: "1.5rem", fontSize: "1.05rem" }}
+          className="dark:text-gray-300"
+        >
           FullStack Developer & UX Designer
         </p>
 
-        <p style={{ marginBottom: "1.5rem" }}>
-          I’m passionate about designing and building user-friendly, accessible digital experiences across platforms.
-        </p>
+        {/* SOBRE MI */}
+        <div
+          style={{ marginBottom: "2rem", textAlign: "left", lineHeight: 1.7 }}
+          className="dark:text-gray-300"
+        >
+          <h3
+            style={{ fontWeight: "bold", marginBottom: "1rem", fontSize: "1.05rem" }}
+            className="dark:text-white"
+          >
+            Sobre mí
+          </h3>
 
-        <hr className="my-4 border-gray-400 dark:border-gray-600" />
+          <p style={{ marginBottom: "1rem" }}>
+            Como <strong>Developer</strong>, encuentro mi propósito en la intersección entre la tecnología y el impacto humano. Mi visión va más allá del código: <em>creo sistemas que no solo funcionan, sino que transforman experiencias</em>.
+          </p>
+          <p style={{ marginBottom: "1rem" }}>
+            En <strong>Computer Science</strong>, veo patrones donde otros ven caos. Mi enfoque analítico y empático me permite diseñar soluciones que anticipan necesidades, creando puentes entre la complejidad técnica y la simplicidad del usuario final.
+          </p>
+          <p style={{ marginBottom: "1rem" }}>
+            <strong>Mi fortaleza</strong> reside en la <em>arquitectura del pensamiento</em>: estructurar ideas complejas en sistemas elegantes y escalables. Combino rigor técnico con intuición creativa para entregar productos que inspiran.
+          </p>
+          <p>
+            <strong>Lo que ofrezco:</strong> Una perspectiva que fusiona <em>profundidad técnica</em>, <em>visión estratégica</em> y <em>sensibilidad humana</em> para crear tecnología con propósito.
+          </p>
+        </div>
 
+        <hr
+          style={{
+            border: "none",
+            height: "2px",
+            background: "linear-gradient(90deg,#c4a47c,#d4c5a9,#c4a47c)",
+            margin: "1.5rem 0"
+          }}
+          className="dark:bg-gradient-to-r dark:from-[#4a5568] dark:via-[#718096] dark:to-[#4a5568]"
+        />
       </div>
-      <section>
-          <h3 style={{ fontWeight: "bold" }}>Education</h3>
-          <p>Universidad del Valle – Ingeniería en Computación</p>
-          <p>(2023 - Actualidad)</p>
-          <p>Colegio Decroly Americano - Bachiller Ciencias & Letras</p>
-          <p>(2011-2022)</p>
 
-        </section>
-      
-        <section style={{ marginTop: "1rem" }}>
-          <h3 style={{ fontWeight: "bold" }}>Skills</h3>
-          <ul style={{ listStyle: "disc", textAlign: "left", paddingLeft: "1.5rem" }}>
-            <li>Python, Java, JavaScript, PHP, SQL</li>
-            <li>HTML, CSS, Laravel, Vue.js</li>
-            <li>PostgreSQL, MySQL</li>
-            <li>Git, Docker, GitHub, Notebooks</li>
-          </ul>
+      {/* RESTO SECCIONES */}
+      <div style={{ padding: "0 1.5rem 1.5rem" }}>
+        {/* STACK */}
+        <section style={{ marginBottom: "1.5rem" }}>
+          <h3
+            style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
+            className="dark:text-white"
+          >
+            Stack Tecnológico
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
+              gap: ".8rem",
+              fontSize: ".95rem"
+            }}
+            className="dark:text-gray-300"
+          >
+            <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
+              <strong>Languages:</strong> Python, Java, JavaScript, PHP, SQL
+            </div>
+            <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
+              <strong>Frontend:</strong> HTML, CSS, Vue.js, React
+            </div>
+            <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
+              <strong>Backend:</strong> Laravel, Node.js
+            </div>
+            <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
+              <strong>Database:</strong> PostgreSQL, MySQL
+            </div>
+            <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
+              <strong>Tools:</strong> Git, Docker, GitHub
+            </div>
+          </div>
         </section>
 
-        <section style={{ marginTop: "1rem" }}>
-          <h3 style={{ fontWeight: "bold" }}>LANGUAGE PROFICIENCY</h3>
-          <ul style={{ listStyle: "disc", textAlign: "left", paddingLeft: "1.5rem" }}>
-            <li>Spanish: Native</li>
-            <li>English: Avanzado C2</li>
-            <li>Japanese: N5 Basic</li>
-          </ul>
+        <hr
+          style={{
+            border: "none",
+            height: "1px",
+            background: "linear-gradient(90deg,transparent,#d4c5a9,transparent)",
+            margin: "1.5rem 0"
+          }}
+          className="dark:bg-gradient-to-r dark:from-transparent dark:via-[#4a5568] dark:to-transparent"
+        />
+
+        {/* FORMACION */}
+        <section style={{ marginBottom: "1.5rem" }}>
+          <h3
+            style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
+            className="dark:text-white"
+          >
+            Formación Académica
+          </h3>
+          <div style={{ fontSize: ".95rem", lineHeight: 1.5 }} className="dark:text-gray-300">
+            <div
+              style={{
+                borderBottom: "1px dashed #d4c5a9",
+                paddingBottom: ".8rem",
+                marginBottom: ".8rem"
+              }}
+              className="dark:border-[#4a5568]"
+            >
+              <p><strong>Universidad del Valle</strong> – Ingeniería en Computación</p>
+              <p style={{ fontSize: ".85rem" }} className="text-[#8a8a8a] dark:text-gray-400">2023 - Actualidad</p>
+            </div>
+            <div>
+              <p><strong>Colegio Decroly Americano</strong> – Bachiller en Ciencias & Letras</p>
+              <p style={{ fontSize: ".85rem" }} className="text-[#8a8a8a] dark:text-gray-400">2011 - 2022</p>
+            </div>
+          </div>
         </section>
+
+        <hr
+          style={{
+            border: "none",
+            height: "1px",
+            background: "linear-gradient(90deg,transparent,#d4c5a9,transparent)",
+            margin: "1.5rem 0"
+          }}
+          className="dark:bg-gradient-to-r dark:from-transparent dark:via-[#4a5568] dark:to-transparent"
+        />
+
+        {/* IDIOMAS */}
+        <section>
+            <h3
+              style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
+              className="dark:text-white"
+            >
+              Idiomas
+            </h3>
+            <div
+              style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", fontSize: ".95rem" }}
+              className="dark:text-gray-300"
+            >
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
+                <strong>Español:</strong> Nativo
+              </div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
+                <strong>Inglés:</strong> Avanzado C2
+              </div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
+                <strong>Japonés:</strong> N5 Básico
+              </div>
+            </div>
+        </section>
+      </div>
     </Window>
   );
 }

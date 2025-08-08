@@ -65,7 +65,8 @@ function Desktop() {
       title: "contact",
       iconLight: icon_contact,
       iconDark: icon_contact_dark,
-    },
+    }
+
   ];
 
   return (

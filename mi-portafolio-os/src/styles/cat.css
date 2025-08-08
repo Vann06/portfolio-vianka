@@ -1,0 +1,76 @@
+/* Ajustes responsivos del gato “sentado” sobre el Desktop (subido un poco más) */
+
+/* Base escritorio */
+.floating-cat {
+  --cat-overlap: 26px;             /* antes 22px */
+  position: absolute;
+  bottom: calc(100% - var(--cat-overlap));
+  width: 132px;
+  height: 96px;
+}
+
+/* Desktop medio */
+@media (max-width: 1200px) {
+  .floating-cat {
+    --cat-overlap: 25px; /* antes 21px */
+    width: 128px;
+    height: 94px;
+  }
+}
+
+/* Tablet grande */
+@media (max-width: 1000px) {
+  .floating-cat {
+    --cat-overlap: 24px; /* antes 20px */
+    width: 122px;
+    height: 90px;
+  }
+}
+
+/* Tablet / phablet */
+@media (max-width: 900px) {
+  .floating-cat {
+    --cat-overlap: 22px; /* antes 18px */
+    width: 116px;
+    height: 86px;
+  }
+}
+
+/* Mobile mediano */
+@media (max-width: 640px) {
+  .floating-cat {
+    --cat-overlap: 20px; /* antes 16px */
+    width: 108px;
+    height: 80px;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 430px) {
+  .floating-cat {
+    --cat-overlap: 18px; /* antes 14px */
+    width: 100px;
+    height: 74px;
+  }
+}
+
+/* Mobile muy pequeño */
+@media (max-width: 360px) {
+  .floating-cat {
+    --cat-overlap: 16px; /* antes 12px */
+    width: 94px;
+    height: 70px;
+  }
+}
+
+/* Ajuste responsivo extra: menos padding-top en mobile para subir también en pantallas chicas */
+@media (max-width: 640px) {
+  .layout-shell {
+    padding-top: 60px !important;  /* antes 80px */
+  }
+}
+@media (max-width: 420px) {
+  .layout-shell {
+    padding-top: 50px !important;
+  }
+}

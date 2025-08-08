@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import './styles/cat.css';
 import { WindowProvider } from './context/WindowContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
