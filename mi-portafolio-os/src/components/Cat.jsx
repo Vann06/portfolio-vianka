@@ -88,28 +88,7 @@ function FloatingCat() {
           e.currentTarget.src = catDark;
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "-34px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "rgba(0,0,0,0.72)",
-          padding: "4px 10px",
-          borderRadius: "6px",
-          fontSize: "12px",
-          color: "#fff",
-          letterSpacing: ".3px",
-          opacity: hover ? 1 : 0,
-          transition: "opacity .25s",
-          pointerEvents: "none",
-          backdropFilter: "blur(4px)",
-          boxShadow: "0 2px 6px rgba(0,0,0,.35)",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {isDark ? "Abrir blog 🌙" : "Ver blog ☀️"}
-      </div>
+      
     </div>
   );
 }

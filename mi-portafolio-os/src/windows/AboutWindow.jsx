@@ -55,23 +55,19 @@ function AboutWindow({ zIndex }) {
           </h3>
 
           <p style={{ marginBottom: "1rem" }}>
-            Como <strong>Developer</strong>, encuentro mi propósito en la intersección entre la tecnología y el impacto humano. Mi visión va más allá del código: <em>creo sistemas que no solo funcionan, sino que transforman experiencias</em>.
+            Creo que la <strong>tecnología</strong> más poderosa es la que entiende a las personas. Por eso, mi trabajo une <em>lógica y empatía</em>, transformando ideas complejas en soluciones claras, útiles y con propósito. Para mí, cada proyecto es una oportunidad de construir algo que no solo funcione, sino que inspire y deje huella.
           </p>
           <p style={{ marginBottom: "1rem" }}>
-            En <strong>Computer Science</strong>, veo patrones donde otros ven caos. Mi enfoque analítico y empático me permite diseñar soluciones que anticipan necesidades, creando puentes entre la complejidad técnica y la simplicidad del usuario final.
+            En <strong>Computer Science</strong>, aplico un enfoque que combina análisis profundo, diseño estructurado y sensibilidad por la experiencia del usuario. Me motiva crear sistemas escalables que integren precisión con usabilidad, asegurando que cada desarrollo aporte valor real y duradero. 
           </p>
           <p style={{ marginBottom: "1rem" }}>
-            <strong>Mi fortaleza</strong> reside en la <em>arquitectura del pensamiento</em>: estructurar ideas complejas en sistemas elegantes y escalables. Combino rigor técnico con intuición creativa para entregar productos que inspiran.
-          </p>
-          <p>
-            <strong>Lo que ofrezco:</strong> Una perspectiva que fusiona <em>profundidad técnica</em>, <em>visión estratégica</em> y <em>sensibilidad humana</em> para crear tecnología con propósito.
+            Combino <strong>profundidad técnica</strong> con <strong>creatividad consciente</strong>, buscando siempre un equilibro entre innovación y significado. Mi objetivo no es solo desarrollar tecnología, sino crear puentes entre lo que es posible y lo que realmente importa. 
           </p>
         </div>
-
         <hr
           style={{
             border: "none",
-            height: "2px",
+            height: "1px",
             background: "linear-gradient(90deg,#c4a47c,#d4c5a9,#c4a47c)",
             margin: "1.5rem 0"
           }}
