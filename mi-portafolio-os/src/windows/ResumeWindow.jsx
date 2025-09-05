@@ -28,8 +28,8 @@ function ResumeWindow({ zIndex }) {
           You can view or download my resume below. Thanks for your interest!
         </p>
 
-        {/* Español */}
-        <h3 style={{ marginBottom: "0.5rem" }}>Español 🇪🇸</h3>
+  {/* Español */}
+  <h3 style={{ marginBottom: "0.5rem" }}>Español</h3>
         <div
           style={{
             width: "100%",
@@ -67,7 +67,7 @@ function ResumeWindow({ zIndex }) {
         </a>
 
         {/* Inglés */}
-        <h3 style={{ margin: "2rem 0 0.5rem" }}>English 🇺🇸</h3>
+        <h3 style={{ margin: "2rem 0 0.5rem" }}>English</h3>
         <div
           style={{
             width: "100%",
