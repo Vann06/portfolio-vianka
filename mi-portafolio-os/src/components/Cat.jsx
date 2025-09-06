@@ -45,7 +45,7 @@ function FloatingCat() {
   const activeGlow = hover || isClickGlow;
 
   const glowFilter = isDark
-    ? "drop-shadow(0 0 14px rgba(170,200,255,.85)) drop-shadow(0 0 30px rgba(120,170,255,.55))"
+    ? "drop-shadow(0 0 14px rgba(210, 170, 255, 0.85)) drop-shadow(0 0 30px rgba(152, 120, 255, 0.55))"
     : "drop-shadow(0 0 14px rgba(255,220,120,.9)) drop-shadow(0 0 30px rgba(255,235,160,.55))";
 
   const baseShadow = "drop-shadow(2px 3px 4px rgba(0,0,0,.35))";
@@ -58,8 +58,7 @@ function FloatingCat() {
       className="floating-cat"
       style={{
         position: "absolute",
-        left: "50%",
-        // bottom: "calc(100% - 14px)",
+        left: "46%", 
         transform: activeGlow
           ? "translateX(-50%) scale(1.14) translateY(-4px)"
           : "translateX(-50%) scale(1)",

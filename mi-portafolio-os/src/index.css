@@ -11,8 +11,8 @@ html, body, #root {
 
 
 html.dark body {
-  background-color: #1e1e2f;
-  color: #fff;
+  background-color: #1b1b24; /* keep background */
+  color: #f1f5f9;
 }
 
 
@@ -35,19 +35,19 @@ html.dark .window-content {
 }
 /* Estilos de la ventana */
 .window-container {
-  background: white;
+  background: #ffffff; /* match Desktop light */
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  border: 2px solid #ccc;
-  color: #346285;
+  border: 2px solid rgba(53, 123, 167, 0.85); /* blue like Desktop */
+  color: #1b2c45;
   font-family: 'Segoe UI', 'Inter', sans-serif;
 }
 
 /* Modo oscuro */
 html.dark .window-container {
-  background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184));
-  border: 2px solid #dddaf0;
-  color: #dddaf0;
+  background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184)); /* match Desktop dark gradient */
+  border: 2px solid #dddaf0; /* light border like Desktop */
+  color: #ffffff;
 }
 
 /* Barra superior */
@@ -58,18 +58,18 @@ html.dark .window-container {
   font-family: monospace;
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #333;
+  background-color: #346285; /* match Desktop light header */
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  border-bottom: 2px solid #444957;
+  border-bottom: 2px solid rgba(53, 123, 167, 0.85);
   color: white;
   cursor: move;
 }
 
 /* Dark mode header */
 html.dark .window-header {
-  background-color: #1e1a35;
-  color: white;
+  background-color: #222024; /* match Desktop dark header */
+  color: #ffffff;
   border-bottom: 2px solid #dddaf0;
 }
 
@@ -147,10 +147,10 @@ html.dark .window-content hr {
 
 /* Ventana general */
 .window-container {
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  border: 2px solid #ccc;
+  border: 2px solid rgba(53, 123, 167, 0.85);
   font-family: 'Segoe UI', 'Inter', sans-serif;
   color: #1b2c45;
 }
@@ -158,7 +158,7 @@ html.dark .window-content hr {
 html.dark .window-container {
   background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184));
   border-color: #dddaf0;
-  color: #dddaf0;
+  color: #ffffff;
 }
 
 /* Encabezado */
@@ -170,7 +170,7 @@ html.dark .window-container {
   font-family: monospace;
   font-weight: bold;
   font-size: 1rem;
-  border-bottom: 2px solid #444957;
+  border-bottom: 2px solid rgba(53, 123, 167, 0.85);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   background-color: #346285;
@@ -181,7 +181,7 @@ html.dark .window-container {
 html.dark .window-header {
   background-color: #222024;
   border-bottom: 2px solid #dddaf0;
-  color: white;
+  color: #ffffff;
 }
 
 /* Contenido */
@@ -215,12 +215,12 @@ html.dark .window-content {
 
 /* Móvil */
 .mobile-window {
-  background: white;
+  background: #ffffff; /* match Desktop light */
   box-shadow: 0 -8px 20px rgba(0,0,0,0.3);
-  border: 2px solid #ccc;
+  border: 2px solid rgba(53, 123, 167, 0.85);
 }
 html.dark .mobile-window {
-  background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184));
+  background: linear-gradient(to bottom, rgb(74, 59, 134), rgb(110, 94, 184)); /* match Desktop dark */
   border-color: #dddaf0;
 }
 
@@ -243,12 +243,12 @@ html.dark .mobile-window {
 }
 
 html.dark{
-  --card-bg: #362c63;
-  --card-border: #a78bfa;
-  --ink: #eeeafc;
-  --muted: #cdc7f9;
+  --card-bg: #2a2a3d;
+  --card-border: #6b7280;
+  --ink: #e6e8ef;
+  --muted: #9aa3b2;
   --accent: #8b5cf6;
-  --chip: #6b21a8;
+  --chip: #4b5563;
 }
 
 .blog-shell{
@@ -312,12 +312,12 @@ html.dark{
 }
 
 html.dark {
-  --card-bg: #362c63;
-  --card-border: #a78bfa;
-  --ink: #eeeafc;
-  --muted: #cdc7f9;
+  --card-bg: #2a2a3d;
+  --card-border: #6b7280;
+  --ink: #e6e8ef;
+  --muted: #9aa3b2;
   --accent: #8b5cf6;
-  --chip: #6b21a8;
+  --chip: #4b5563;
 }
 
 .profile-photo { border:3px solid #c4a47c; }

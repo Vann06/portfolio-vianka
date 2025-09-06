@@ -1,7 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+// Initialize i18n once at app startup
+import './i18n'
 import './styles/cat.css';
 import './styles/post.css';
 import { WindowProvider } from './context/WindowContext';

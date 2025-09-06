@@ -61,7 +61,7 @@ function HomeView() {
           display: "flex",
           justifyContent: "center",
           alignItems: "flex-start",
-          padding: "80px 0 60px",   // antes 120px → sube todo ~40px
+          padding: "80px 0 60px",   
           minHeight: "100vh",
           boxSizing: "border-box"
         }}

@@ -1,0 +1,100 @@
+{
+  "app": {
+    "title": "Vianka's Desktop",
+    "open": "Open",
+    "close": "Close",
+    "minimize": "Minimize",
+    "maximize": "Maximize"
+  },
+  "windows": {
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "post": "Post",
+    "contact": "Contact",
+  "resume": "Resume",
+  "email": "Email",
+  "home": "home",
+  "links": "Links"
+  },
+  "resume": {
+  "title": "My Resume",
+  "subtitle": "You can view or download my resume below. Thanks for your interest!",
+  "spanish": "Spanish 🇬🇹",
+  "english": "English 🇺🇸",
+  "downloadEs": "Download resume in Spanish",
+  "downloadEn": "Download resume in English"
+  },
+  "blog": {
+    "title": "My Blog",
+    "readMore": "Read more",
+    "minutes": "min",
+    "resources": "You can also read",
+    "sources": "Sources",
+    "by": "by"
+  },
+  "post": {
+    "words": "words"
+  },
+  "about": {
+    "hello": "Hello! I'm Vianka",
+    "subtitle": "Computer Science + Product-minded Developer",
+    "cta": "See CV",
+    "aboutMeTitle": "About me",
+    "bioP1": "I believe the most powerful technology is the one that understands people. That’s why my work blends logic and empathy, turning complex ideas into clear, useful, and meaningful solutions.",
+    "bioP2": "In Computer Science, I combine deep analysis, structured design, and sensitivity for user experience. I’m driven to build scalable systems that integrate precision and usability, ensuring each development brings real and lasting value.",
+    "bioP3": "I balance strong technical depth with mindful creativity, seeking a bridge between innovation and purpose. My goal is not just to code, but to build what truly matters.",
+    "stackTitle": "Tech Stack",
+    "educationTitle": "Education",
+    "languagesTitle": "Languages",
+    "langSpanish": "Spanish: Native",
+    "langEnglish": "English: Advanced C2",
+    "langJapanese": "Japanese: Basic N5"
+  },
+  "controls": {
+    "language": "Language",
+    "theme": "Theme",
+    "sound": "Sound"
+  },
+  "home": {
+    "hi": "hi!",
+    "im": "I’m {{name}}",
+    "subtitle": "Fullstack dev, UX Designer, and Illustrator"
+  },
+  "contact": {
+    "linkOpenNote": "Clicking any of the links will open a new tab!"
+  },
+  "emailForm": {
+    "title": "Want to get in touch?",
+    "intro": "You can send me an email if you like, I'll be happy to get in touch with you! :D",
+    "name": "Your Name",
+    "email": "Your Email",
+    "subject": "Subject",
+    "message": "Your message here..",
+    "send": "Send",
+    "successTitle": "Mail sent successfully!",
+    "successSubtitle": "I'll get in contact with you very soon! 💜",
+    "error": "There was an error sending the message. Please try again."
+  },
+  "projects": {
+    "stackTitle": "Tech Stack",
+    "viewOnGitHub": "View on GitHub",
+    "items": {
+      "sol": {
+        "title": "SOL Store",
+        "description": "E-commerce store with inventory system, user authentication and admin using Laravel and Vue.js.",
+        "tech": "Laravel, Vue, PostgreSQL, Docker, Blade, PHP, CSS, JavaScript"
+      },
+      "miniso": {
+        "title": "Miniso E-commerce",
+        "description": "Miniso e-commerce with shopping cart, user authentication and product management using the MERN stack.",
+        "tech": "React, JavaScript, CSS, HTML, MongoDB, Node.js, Express"
+      },
+      "tuto": {
+        "title": "Tuto!",
+        "description": "Mobile app to find tutors and private classes, built for both tutors and students.",
+        "tech": "Android Studio, Kotlin"
+      }
+    }
+  }
+}

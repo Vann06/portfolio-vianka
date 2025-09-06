@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
+import { useTranslation } from 'react-i18next';
 
 function AboutWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
+  const { t } = useTranslation();
 
   return (
     <Window
@@ -35,11 +37,8 @@ function AboutWindow({ zIndex }) {
           Vianka Castro
         </h1>
 
-        <p
-          style={{ fontWeight: 600, marginBottom: "1.5rem", fontSize: "1.05rem" }}
-          className="dark:text-gray-300"
-        >
-          FullStack Developer & UX Designer
+        <p style={{ fontWeight: 600, marginBottom: "1.5rem", fontSize: "1.05rem" }} className="dark:text-gray-300">
+          {t('about.subtitle')}
         </p>
 
         {/* SOBRE MI */}
@@ -47,22 +46,13 @@ function AboutWindow({ zIndex }) {
           style={{ marginBottom: "2rem", textAlign: "left", lineHeight: 1.7 }}
           className="dark:text-gray-300"
         >
-          <h3
-            style={{ fontWeight: "bold", marginBottom: "1rem", fontSize: "1.05rem" }}
-            className="dark:text-white"
-          >
-            Sobre mí
+          <h3 style={{ fontWeight: "bold", marginBottom: "1rem", fontSize: "1.05rem" }} className="dark:text-white">
+            {t('about.aboutMeTitle')}
           </h3>
 
-          <p style={{ marginBottom: "1rem" }}>
-            Creo que la <strong>tecnología</strong> más poderosa es la que entiende a las personas. Por eso, mi trabajo une <em>lógica y empatía</em>, transformando ideas complejas en soluciones claras, útiles y con propósito. Para mí, cada proyecto es una oportunidad de construir algo que no solo funcione, sino que inspire y deje huella.
-          </p>
-          <p style={{ marginBottom: "1rem" }}>
-            En <strong>Computer Science</strong>, aplico un enfoque que combina análisis profundo, diseño estructurado y sensibilidad por la experiencia del usuario. Me motiva crear sistemas escalables que integren precisión con usabilidad, asegurando que cada desarrollo aporte valor real y duradero. 
-          </p>
-          <p style={{ marginBottom: "1rem" }}>
-            Combino <strong>profundidad técnica</strong> con <strong>creatividad consciente</strong>, buscando siempre un equilibro entre innovación y significado. Mi objetivo no es solo desarrollar tecnología, sino crear puentes entre lo que es posible y lo que realmente importa. 
-          </p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP1')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP2')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP3')}</p>
         </div>
         <hr
           style={{
@@ -79,11 +69,8 @@ function AboutWindow({ zIndex }) {
       <div style={{ padding: "0 1.5rem 1.5rem" }}>
         {/* STACK */}
         <section style={{ marginBottom: "1.5rem" }}>
-          <h3
-            style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
-            className="dark:text-white"
-          >
-            Stack Tecnológico
+          <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">
+            {t('about.stackTitle')}
           </h3>
           <div
             style={{
@@ -124,11 +111,8 @@ function AboutWindow({ zIndex }) {
 
         {/* FORMACION */}
         <section style={{ marginBottom: "1.5rem" }}>
-          <h3
-            style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
-            className="dark:text-white"
-          >
-            Formación Académica
+          <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">
+            {t('about.educationTitle')}
           </h3>
           <div style={{ fontSize: ".95rem", lineHeight: 1.5 }} className="dark:text-gray-300">
             <div
@@ -161,25 +145,16 @@ function AboutWindow({ zIndex }) {
 
         {/* IDIOMAS */}
         <section>
-            <h3
-              style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
-              className="dark:text-white"
-            >
-              Idiomas
+            <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">
+              {t('about.languagesTitle')}
             </h3>
             <div
               style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", fontSize: ".95rem" }}
               className="dark:text-gray-300"
             >
-              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
-                <strong>Español:</strong> Nativo
-              </div>
-              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
-                <strong>Inglés:</strong> Avanzado C2
-              </div>
-              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
-                <strong>Japonés:</strong> N5 Básico
-              </div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">{t('about.langSpanish')}</div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">{t('about.langEnglish')}</div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">{t('about.langJapanese')}</div>
             </div>
         </section>
       </div>

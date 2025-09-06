@@ -2,64 +2,64 @@
 
 /* Base escritorio */
 .floating-cat {
-  --cat-overlap: 26px;             /* antes 22px */
+  --cat-overlap: 36px;             /* a bit lower (more overlap) */
   position: absolute;
   bottom: calc(100% - var(--cat-overlap));
-  width: 132px;
-  height: 96px;
+  width: 176px;  /* bigger */
+  height: 130px; /* bigger */
 }
 
 /* Desktop medio */
 @media (max-width: 1200px) {
   .floating-cat {
-    --cat-overlap: 25px; /* antes 21px */
-    width: 128px;
-    height: 94px;
+  --cat-overlap: 32px;
+  width: 158px;
+  height: 116px;
   }
 }
 
 /* Tablet grande */
 @media (max-width: 1000px) {
   .floating-cat {
-    --cat-overlap: 24px; /* antes 20px */
-    width: 122px;
-    height: 90px;
+  --cat-overlap: 30px;
+  width: 150px;
+  height: 110px;
   }
 }
 
 /* Tablet / phablet */
 @media (max-width: 900px) {
   .floating-cat {
-    --cat-overlap: 22px; /* antes 18px */
-    width: 116px;
-    height: 86px;
+  --cat-overlap: 28px;
+  width: 144px;
+  height: 104px;
   }
 }
 
 /* Mobile mediano */
 @media (max-width: 640px) {
   .floating-cat {
-    --cat-overlap: 20px; /* antes 16px */
-    width: 108px;
-    height: 80px;
+  --cat-overlap: 26px;
+  width: 134px;
+  height: 98px;
   }
 }
 
 /* Mobile pequeño */
 @media (max-width: 430px) {
   .floating-cat {
-    --cat-overlap: 18px; /* antes 14px */
-    width: 100px;
-    height: 74px;
+  --cat-overlap: 24px;
+  width: 126px;
+  height: 94px;
   }
 }
 
 /* Mobile muy pequeño */
 @media (max-width: 360px) {
   .floating-cat {
-    --cat-overlap: 16px; /* antes 12px */
-    width: 94px;
-    height: 70px;
+  --cat-overlap: 22px;
+  width: 120px;
+  height: 88px;
   }
 }
 

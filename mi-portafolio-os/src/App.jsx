@@ -8,6 +8,7 @@ import MuteToggle from "./components/MuteToggle";
 import { LanguageProvider } from "./context/LanguageContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { UseWindowOpenEvent } from "./listeners/windowEvents";
+import LanguageToggle from './components/LanguageToggle';
 
 function App() {
   const [isDark, setIsDark] = useState(
@@ -37,6 +38,7 @@ function App() {
             <UseWindowOpenEvent />
             <ThemeToggle />
             <MuteToggle />
+            <LanguageToggle />
             <HomeView />
           </WindowProvider>
         </SoundProvider>

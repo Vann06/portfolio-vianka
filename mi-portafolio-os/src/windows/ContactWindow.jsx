@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
 import AnimatedIcon from "../components/AnimatedIcon";
+import { useTranslation } from 'react-i18next';
 
 // Iconos
 import linkedin_dark from "../assets/linkedin.svg";
@@ -19,6 +20,7 @@ import youtube_dark from "../assets/icon_yt_dark.webp";
 
 function LinksWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
+  const { t } = useTranslation();
 
   const links = [
     { name: "Twitter", iconLight: twitter, iconDark: twitter_dark, url: "https://x.com/hatsunemiku?lang=en" },
@@ -83,7 +85,7 @@ function LinksWindow({ zIndex }) {
         }}
         className="dark:bg-[#2e2e3e] dark:text-white"
       >
-        Clicking any of the links will open a new tab!
+        {t('app.open')} {t('windows.links') || ''}
       </div>
     </Window>
   );

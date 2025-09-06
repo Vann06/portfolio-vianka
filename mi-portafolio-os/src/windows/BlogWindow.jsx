@@ -1,12 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
-import { useLanguage } from "../context/LanguageContext";
 import { blogPosts } from "../data/blogPosts";
+import { useTranslation } from 'react-i18next';
 
 function BlogWindow({ zIndex }) {
   const { openWindow, closeWindow, bringToFront } = useContext(WindowContext);
-  const { language, toggleLanguage } = useLanguage();
+  const { i18n } = useTranslation();
+  const language = i18n.resolvedLanguage || i18n.language || 'es';
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -36,9 +37,6 @@ function BlogWindow({ zIndex }) {
           <h2 style={{ fontSize: "1.5rem", fontWeight: 800 }}>
             {language === "en" ? "My Blog" : "Mi Blog"}
           </h2>
-          <button className="blog-chip" onClick={toggleLanguage} style={{ padding: "0.5rem 1rem", borderRadius: 8 }}>
-            {language === "en" ? "ES" : "EN"}
-          </button>
         </div>
 
         <div className="blog-list">

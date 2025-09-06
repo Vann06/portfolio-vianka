@@ -2,9 +2,11 @@ import { useContext } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
 import '../styles/buttons.css';
+import { useTranslation } from 'react-i18next';
 
 function ResumeWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
+  const { t } = useTranslation();
   const isMobile = window.innerWidth < 768;
 
   return (
@@ -20,16 +22,12 @@ function ResumeWindow({ zIndex }) {
           fontFamily: "'Segoe UI', 'Inter', sans-serif",
         }}
       >
-        <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
-          My Resume
-        </h1>
+  <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{t('resume.title')}</h1>
 
-        <p style={{ fontSize: "1rem", marginBottom: "1.2rem", color: "inherit" }}>
-          You can view or download my resume below. Thanks for your interest!
-        </p>
+  <p style={{ fontSize: "1rem", marginBottom: "1.2rem", color: "inherit" }}>{t('resume.subtitle')}</p>
 
   {/* Español */}
-  <h3 style={{ marginBottom: "0.5rem" }}>Español</h3>
+  <h3 style={{ marginBottom: "0.5rem" }}>{t('resume.spanish')}</h3>
         <div
           style={{
             width: "100%",
@@ -63,11 +61,11 @@ function ResumeWindow({ zIndex }) {
           onClick={() => closeWindow("resume")}
           className="btn"
         >
-          Download Resume in Spanish
+          {t('resume.downloadEs')}
         </a>
 
         {/* Inglés */}
-        <h3 style={{ margin: "2rem 0 0.5rem" }}>English</h3>
+  <h3 style={{ margin: "2rem 0 0.5rem" }}>{t('resume.english')}</h3>
         <div
           style={{
             width: "100%",
@@ -101,7 +99,7 @@ function ResumeWindow({ zIndex }) {
           onClick={() => closeWindow("resume")}
           className="btn"
         >
-          Download Resume in English
+          {t('resume.downloadEn')}
         </a>
       </div>
     </Window>

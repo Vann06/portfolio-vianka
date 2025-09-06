@@ -3,10 +3,12 @@ import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
 import { blogPosts } from "../data/blogPosts";
 import { useLanguage } from "../context/LanguageContext";
+import { useTranslation } from 'react-i18next';
 import { enrichPost } from "../utils/formatPost";
 
 function PostWindow({ zIndex, postId, windowName }) {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const { closeWindow, bringToFront } = useContext(WindowContext);
   const name = windowName || `post-${postId}`;
   const raw = blogPosts.find((p) => p.id === postId);
@@ -80,7 +82,7 @@ function PostWindow({ zIndex, postId, windowName }) {
           <span>•</span>
           <span>{post.readTime}</span>
           <span>•</span>
-          <span>{post.wordCount} words</span>
+          <span>{post.wordCount} {language === 'es' ? 'palabras' : 'words'}</span>
           {typeof post.boldRatio === "number" && (
             <>
               <span>•</span>
@@ -109,9 +111,7 @@ function PostWindow({ zIndex, postId, windowName }) {
               }}
               className="dark:text-white"
             >
-              {language === "es"
-                ? "También puedes leer"
-                : "You can also read"}
+              {language === 'es' ? 'También puedes leer' : 'You can also read'}
             </h4>
             <ul style={{ fontSize: ".85rem", lineHeight: 1.4 }}>
               {post.links.internal.map((link) => (
@@ -151,7 +151,7 @@ function PostWindow({ zIndex, postId, windowName }) {
               }}
               className="dark:text-white"
             >
-              {language === "es" ? "Fuentes" : "Sources"}
+              {language === 'es' ? 'Fuentes' : 'Sources'}
             </h4>
             <ul style={{ fontSize: ".85rem", lineHeight: 1.4 }}>
               {post.links.external.map((ext) => (
@@ -201,7 +201,7 @@ function PostWindow({ zIndex, postId, windowName }) {
               }}
               className="dark:bg-[#718096] dark:text-white"
             >
-              {language === "es" ? "Ir" : "Go"}
+              {language === 'es' ? 'Ir' : 'Go'}
             </a>
           </div>
         )}
