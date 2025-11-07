@@ -82,19 +82,19 @@ function AboutWindow({ zIndex }) {
             className="dark:text-gray-300"
           >
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Languages:</strong> Python, Java, JavaScript, PHP, SQL
+              <strong>{t('about.stack.languages_label')}</strong> {t('about.stack.languages')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Frontend:</strong> HTML, CSS, Vue.js, React
+              <strong>{t('about.stack.frontend_label')}</strong> {t('about.stack.frontend')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Backend:</strong> Laravel, Node.js
+              <strong>{t('about.stack.backend_label')}</strong> {t('about.stack.backend')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Database:</strong> PostgreSQL, MySQL
+              <strong>{t('about.stack.database_label')}</strong> {t('about.stack.database')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Tools:</strong> Git, Docker, GitHub
+              <strong>{t('about.stack.tools_label')}</strong> {t('about.stack.tools')}
             </div>
           </div>
         </section>
@@ -124,7 +124,7 @@ function AboutWindow({ zIndex }) {
               className="dark:border-[#4a5568]"
             >
               <p><strong>Universidad del Valle</strong> – Ingeniería en Computación</p>
-              <p style={{ fontSize: ".85rem" }} className="text-[#8a8a8a] dark:text-gray-400">2023 - Actualidad</p>
+              <p style={{ fontSize: ".85rem" }} className="text-[#8a8a8a] dark:text-gray-400">{t('about.uniPeriod')}</p>
             </div>
             <div>
               <p><strong>Colegio Decroly Americano</strong> – Bachiller en Ciencias & Letras</p>
