@@ -131,7 +131,7 @@ También puedes leer:
         en: "Want to see the code? Explore the repository.",
         es: "¿Quieres ver el código? Explora el repositorio."
       },
-      url: "https://github.com/Vianka/portfolio-vianka"
+      url: "https://github.com/Vann06/portfolio-vianka"
     },
     title: {
       en: "Building My Desktop OS Portfolio",
@@ -192,7 +192,7 @@ Uno de los mayores desafíos fue crear un sistema de ventanas realista con venta
     },
     title: {
       en: "My Journey as a Full Stack Developer",
-      es: "Mi Viaje como Desarrollador Full Stack"
+      es: "Mi Viaje como Desarrolladora Full Stack"
     },
     summary: {
       en: "From design to development: my path in tech",
@@ -208,7 +208,7 @@ Key lessons learned:
 - Collaboration between design and development teams is crucial
 
 Today, I work with technologies like React, Laravel, Vue.js, and various databases to create complete digital experiences.`,
-      es: `Comenzando como diseñador UX, gradualmente hice la transición al desarrollo full-stack. Este viaje me enseñó la importancia de entender tanto las necesidades del usuario como la implementación técnica.
+  es: `Comenzando como diseñadora UX, gradualmente hice la transición al desarrollo full-stack. Este viaje me enseñó la importancia de entender tanto las necesidades del usuario como la implementación técnica.
 
 Lecciones clave aprendidas:
 - La experiencia del usuario debe impulsar las decisiones técnicas
@@ -218,9 +218,84 @@ Lecciones clave aprendidas:
 
 Hoy trabajo con tecnologías como React, Laravel, Vue.js y varias bases de datos para crear experiencias digitales completas.`
     },
-    image: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1748235417/65209107-0a46-47eb-bf66-aca123ef191e.png",
+    image: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1762904160/yio2_fnfxza.jpg",
     date: "2025-01-10",
     tags: ["Career", "Full Stack", "Development"],
     readTime: "4 min"
+  }
+  ,
+  {
+    id: 4,
+    slug: "reflexiones-sobre-mi-carrera",
+    keywords: ["carrera", "aprendizajes", "marca personal", "reflections", "career"],
+    pattern: "F",
+    highlightSentences: [
+      "La práctica constante transforma la curiosidad en habilidad.",
+      "Practice and curiosity turn into real skills over time."
+    ],
+    links: {
+      internal: [{ label: "Mi Portafolio", to: "desktop-os-portfolio" }],
+      external: [
+        { label: "SOL Store (proyecto)", href: "https://github.com/Vann06/sol-store-ecommerce" },
+        { label: "TutorMatch (proyecto)", href: "https://github.com/Vann06/TutorMatch" }
+      ]
+    },
+    cta: {
+      text: {
+        en: "Explore the projects that shaped my approach.",
+        es: "Explora los proyectos que moldearon mi enfoque."
+      },
+      url: "https://github.com/Vann06"
+    },
+    title: {
+      en: "Reflections on My Career: Curiosity, Practice and Purpose",
+      es: "Reflexiones sobre mi carrera: Curiosidad, práctica y propósito"
+    },
+    summary: {
+      en: "Short reflections and practical lessons from my journey building products, learning technologies and shaping a personal brand.",
+      es: "Reflexiones breves y lecciones prácticas de mi trayectoria creando productos, aprendiendo tecnologías y construyendo una marca personal."
+    },
+    content: {
+      en: `I started by asking small questions: How does this work? Who uses it? Why does it matter?
+
+Those small curiosities became the threads of a larger practice. Over time I realized that skill is less about innate talent and more about consistent, deliberate practice — and about choosing problems that teach you something meaningful.
+
+## Lessons I Carry
+- Build to learn, not just to show. Pick projects that stretch a skill you want to keep.
+- Work with empathy. Technical solutions should reduce friction, not add it.
+- Share what you learn. Writing, documenting or teaching cements knowledge and builds your voice.
+
+## On Personal Brand
+Your brand is the mix of what you build and how you talk about it. Being consistent, honest and generous with your work attracts collaborators and opportunities.
+
+## Practical Tips
+- Keep a learning backlog: a short list of technologies or concepts to practice each month.
+- Ship small, iterate fast. A tiny public project is more valuable than a perfect private one.
+- Pair with others. Conversations accelerate growth.
+
+These are not revolutionary rules. They are the small, repeatable decisions that accumulate into a meaningful career. If you’re starting out, focus on curiosity, practice, and on building with purpose.`,
+      es: `Empecé preguntando cosas pequeñas: ¿Cómo funciona esto? ¿Quién lo usa? ¿Por qué importa?
+
+Esas pequeñas curiosidades se convirtieron en los hilos de una práctica mayor. Con el tiempo comprendí que la habilidad depende menos del talento innato y más de la práctica deliberada y consistente —y de escoger problemas que enseñen algo significativo.
+
+## Lecciones que llevo conmigo
+- Construye para aprender, no solo para mostrar. Elige proyectos que desafíen una habilidad que quieras consolidar.
+- Trabaja con empatía. Las soluciones técnicas deben reducir fricciones, no añadirlas.
+- Comparte lo que aprendes. Escribir, documentar o enseñar consolida el conocimiento y te da voz.
+
+## Sobre la marca personal
+Tu marca es la mezcla entre lo que construyes y cómo lo cuentas. Ser consistente, honesta y generosa con tu trabajo atrae colaboradores y oportunidades.
+
+## Consejos prácticos
+- Mantén un backlog de aprendizaje: una lista corta de tecnologías o conceptos para practicar cada mes.
+- Lanza rápido y mejora. Un proyecto pequeño público vale más que uno perfecto privado.
+- Colabora con otros. Las conversaciones aceleran el crecimiento.
+
+No son reglas revolucionarias. Son decisiones pequeñas y repetibles que se acumulan en una carrera significativa. Si estás empezando, enfócate en la curiosidad, la práctica y construir con propósito.`
+    },
+    image: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1762904967/yio3_sfljta.jpg",
+    date: "2025-11-11",
+    tags: ["Carrera", "Marca Personal", "Aprendizajes", "Career", "Reflections"],
+    readTime: "6 min"
   }
 ];

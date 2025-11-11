@@ -53,6 +53,8 @@ function AboutWindow({ zIndex }) {
           <p style={{ marginBottom: "1rem" }}>{t('about.bioP1')}</p>
           <p style={{ marginBottom: "1rem" }}>{t('about.bioP2')}</p>
           <p style={{ marginBottom: "1rem" }}>{t('about.bioP3')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP4')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP5')}</p>
         </div>
         <hr
           style={{

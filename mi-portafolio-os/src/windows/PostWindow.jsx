@@ -18,6 +18,7 @@ function PostWindow({ zIndex, postId, windowName }) {
     [raw, language]
   );
 
+
   useEffect(() => {
     if (!post) console.warn("[PostWindow] Post no encontrado:", postId);
   }, [post, postId]);
