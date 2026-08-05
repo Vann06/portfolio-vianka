@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 function AboutWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
   const { t } = useTranslation();
+  const youtubeVideoId = "Dy6XDMNXX98";
 
   return (
     <Window
@@ -16,7 +17,7 @@ function AboutWindow({ zIndex }) {
     >
       <div className="window-center" style={{ padding: "1.5rem" }}>
         <img
-          src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1747715633/Profile2_bumxj0.jpg"
+          src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1762904967/yio3_sfljta.jpg"
           alt="Profile"
           style={{
             width: "120px",
@@ -69,6 +70,41 @@ function AboutWindow({ zIndex }) {
 
       {/* RESTO SECCIONES */}
       <div style={{ padding: "0 1.5rem 1.5rem" }}>
+
+        {/* ENLACE A VIDEO INTRODUCTORIO */}
+        {/* VIDEO INTRODUCTORIO */}
+
+        <section>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "560px",
+              margin: "0 auto",
+              aspectRatio: "16 / 9",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.16)",
+              border: "2px solid #d4c5a9"
+            }}
+            className="dark:border-[#C8A2C8]"
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${youtubeVideoId}`}
+              title={t("about.videoTitle")}
+              width="100%"
+              height="100%"
+              style={{
+                display: "block",
+                border: "none"
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </section>
+
+
         {/* STACK */}
         <section style={{ marginBottom: "1.5rem" }}>
           <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">

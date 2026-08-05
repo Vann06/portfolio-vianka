@@ -43,7 +43,7 @@ function ResumeWindow({ zIndex }) {
           className="dark:bg-[#2a2a3d]"
         >
           <iframe
-            src={`${import.meta.env.BASE_URL}cv.pdf`}
+            src={`${import.meta.env.BASE_URL}Curriculum_Vianka_Castro_ES.pdf`}
             title="Resume Español"
             width="100%"
             height={isMobile ? "700px" : "100%"}
@@ -56,7 +56,7 @@ function ResumeWindow({ zIndex }) {
         </div>
 
         <a
-          href={`${import.meta.env.BASE_URL}cv.pdf`}
+          href={`${import.meta.env.BASE_URL}Curriculum_Vianka_Castro_ES.pdf`}
           download
           onClick={() => closeWindow("resume")}
           className="btn"
@@ -81,7 +81,7 @@ function ResumeWindow({ zIndex }) {
           className="dark:bg-[#2a2a3d]"
         >
           <iframe
-            src={`${import.meta.env.BASE_URL}cv-eng.pdf`}
+            src={`${import.meta.env.BASE_URL}Resume_Vianka_Castro_EN.pdf`}
             title="Resume English"
             width="100%"
             height={isMobile ? "700px" : "100%"}
@@ -94,7 +94,7 @@ function ResumeWindow({ zIndex }) {
         </div>
 
         <a
-          href={`${import.meta.env.BASE_URL}cv-eng.pdf`}
+          href={`${import.meta.env.BASE_URL}Resume_Vianka_Castro_EN.pdf`}
           download
           onClick={() => closeWindow("resume")}
           className="btn"

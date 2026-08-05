@@ -27,7 +27,7 @@ function LinksWindow({ zIndex }) {
     { name: "YouTube", iconLight: youtube, iconDark: youtube_dark, url: "https://youtube.com" },
     { name: "LinkedIn", iconLight: linkedin, iconDark: linkedin_dark, url: "https://www.linkedin.com/in/vianka-castro-121a90364/" },
     { name: "Discord", iconLight: discord, iconDark: discord_dark, url: "https://discord.gg/aQ8xX67H"},
-    { name: "Instagram", iconLight: instagram, iconDark: instagram_dark, url: "https://www.instagram.com/copy._.cat/" },
+    { name: "Instagram", iconLight: instagram, iconDark: instagram_dark, url: "https://www.instagram.com/_viankav/" },
     { name: "GitHub", iconLight: github_dark, iconDark: github, url: "https://www.github.com/Vann06" }
   ];
 

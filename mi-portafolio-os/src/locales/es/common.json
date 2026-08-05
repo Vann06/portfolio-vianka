@@ -53,7 +53,7 @@
       "languages_label": "Lenguajes:",
       "languages": "Python, Java, JavaScript, PHP, SQL",
       "frontend_label": "Frontend:",
-      "frontend": "HTML, CSS, Vue.js, React",
+      "frontend": "HTML, CSS, Vue.js, React, Next.js, Tailwind CSS, Bootstrap",
       "backend_label": "Backend:",
       "backend": "Laravel, Node.js",
       "database_label": "Base de datos:",
@@ -61,7 +61,7 @@
       "tools_label": "Herramientas:",
       "tools": "Git, Docker, GitHub"
     },
-    "uniPeriod": "2023 - 4to Semestre",
+    "uniPeriod": "2023 - 7mo Semestre",
     "langSpanish": "Español: Nativo",
     "langEnglish": "Inglés: Avanzado C2",
     "langJapanese": "Japonés: N5 Básico"
@@ -74,7 +74,7 @@
   "home": {
     "hi": "¡hola!",
     "im": "soy {{name}}",
-    "subtitle": "Desarrolladora fullstack, Diseñadora UX e Ilustradora"
+    "subtitle": "Desarrolladora fullstack, Diseñadora UX y Analista de Datos"
   },
   "contact": {
     "linkOpenNote": "¡Al hacer clic en cualquier enlace se abrirá en una nueva pestaña!"

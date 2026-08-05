@@ -87,7 +87,8 @@ function HomeView() {
               overflow: "visible"
             }}
           >
-            <Cat />
+            <Cat /> 
+
             <Desktop />
           </div>
         </div>
