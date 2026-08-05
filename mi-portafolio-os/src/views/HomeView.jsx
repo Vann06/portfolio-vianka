@@ -11,6 +11,8 @@ import Cat from "../components/Cat";
 import { useContext } from "react";
 import { WindowContext } from "../context/WindowContext";
 import { blogPosts } from "../data/blogPosts";
+import ProjectDetailWindow from "../windows/ProjectDetailWindow";
+import { projects } from "../data/projects";
 
 // --- crear una sola vez el mapa dinámico (referencias estables) ---
 const postWindowComponents = Object.fromEntries(
@@ -28,18 +30,36 @@ const postWindowComponents = Object.fromEntries(
   ])
 );
 
+const projectWindowComponents = Object.fromEntries(
+  projects.map((project) => [
+    `project-${project.id}`,
+
+    function ProjectWindowWrapper(props) {
+      return (
+        <ProjectDetailWindow
+          {...props}
+          projectId={project.id}
+          windowName={`project-${project.id}`}
+        />
+      );
+    }
+  ])
+);
+
 function HomeView() {
   const { windows } = useContext(WindowContext);
 
   const windowComponents = {
-    about: AboutWindow,
-    links: ContactWindow,
-    work: ProyectsWindow,
-    resume: ResumeWindow,
-    contact: EmailWindow,
-    blog: BlogWindow,
-    ...postWindowComponents
-  };
+  about: AboutWindow,
+  links: ContactWindow,
+  work: ProyectsWindow,
+  resume: ResumeWindow,
+  contact: EmailWindow,
+  blog: BlogWindow,
+
+  ...postWindowComponents,
+  ...projectWindowComponents
+};
 
   return (
     <div

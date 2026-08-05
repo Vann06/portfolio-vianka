@@ -5,7 +5,14 @@ import useSound from "use-sound";
 import { useSoundContext } from "../context/SoundContext"; 
 
 
-function Window({ title, children, onClose, zIndex = 10, onFocus }) {
+function Window({
+  title,
+  children,
+  onClose,
+  zIndex = 10,
+  onFocus,
+  defaultSize = { width: 550, height: 500 }
+}) {
   const [isDark, setIsDark] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [playClose] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/close_uufjve.mp3", {volume:1});
@@ -34,8 +41,15 @@ function Window({ title, children, onClose, zIndex = 10, onFocus }) {
   if (!isMobile) {
     return (
       <Rnd
-        default={{ x: 200, y: 100, width: 550, height: 500 }}
+        default={{
+          x: Math.max(24, (window.innerWidth - defaultSize.width) / 2),
+          y: 80,
+          width: defaultSize.width,
+          height: defaultSize.height
+        }}
         minWidth={300}
+        minHeight={300}
+        maxWidth="95vw"
         maxHeight={700}
         bounds="window"
         style={{ zIndex }}

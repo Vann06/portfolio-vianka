@@ -322,3 +322,27 @@ html.dark {
 
 .profile-photo { border:3px solid #c4a47c; }
 .dark .profile-photo { border-color:#cfc0f3; }
+
+
+.window-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+.window-content {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mobile-window .window-content {
+  max-height: none;
+}

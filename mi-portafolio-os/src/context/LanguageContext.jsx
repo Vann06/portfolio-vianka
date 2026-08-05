@@ -3,30 +3,29 @@ import i18n from '../i18n';
 
 const LanguageContext = createContext();
 
+function normalizeLanguage(value) {
+  return value?.split("-")[0] === "en" ? "en" : "es";
+}
+
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState("es");
+  const [language, setLanguage] = useState(() =>
+    normalizeLanguage(i18n.resolvedLanguage || i18n.language)
+  );
 
   useEffect(() => {
-    // align state with detected/remembered language from i18next on mount
-    const detected = i18n.resolvedLanguage || i18n.language;
-    if (detected && detected !== language) {
-      setLanguage(detected);
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = language;
     }
-  }, []);
+  }, [language]);
 
   const toggleLanguage = () => {
-    setLanguage(prev => {
-      const next = prev === 'es' ? 'en' : 'es';
-      try { i18n.changeLanguage(next); } catch {}
-      return next;
+    const next = language === "es" ? "en" : "es";
+
+    setLanguage(next);
+    i18n.changeLanguage(next).catch((error) => {
+      console.error("Could not change language", error);
     });
   };
-
-  // reflect current language on <html lang="...">
-  if (typeof document !== 'undefined') {
-    const html = document.documentElement;
-    if (html && html.lang !== language) html.lang = language;
-  }
 
   return (
     <LanguageContext.Provider

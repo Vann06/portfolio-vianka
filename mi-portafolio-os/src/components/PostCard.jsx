@@ -1,23 +1,63 @@
+function PostCard({
+  post,
+  language,
+  index,
+  openLabel,
+  onOpenPost
+}) {
+  const title = post.title[language] ?? post.title.en;
+  const summary = post.summary[language] ?? post.summary.en;
+  const formattedDate = new Intl.DateTimeFormat(
+    language === "es" ? "es-GT" : "en-US",
+    { year: "numeric", month: "short", day: "2-digit" }
+  ).format(new Date(`${post.date}T12:00:00`));
 
-function PostCard({ post, language, onOpenPost}){
-    return (
-        <div 
-            className="post-card"
-            onClick={() => onOpenPost(post)}
-            style={{cursor: "pointer", marginBottom: "1rem"}}
-        >
-            <img
-                src={post.image}
-                alt={post.title[language]}
-                style={{ width: "100%", height: 160, objectFit: "cover", display: "block" }}
-                loading="lazy"
-                onError={(e) => { e.currentTarget.src = "/fallback-post.png" }}
-                draggable={false}
-            />
-            <h3>{post.title[language]}</h3>
-            <p>{post.summary[language]}</p>
-            <span>{post.date} • {post.readTime}</span>
+  return (
+    <button
+      type="button"
+      className="blog-entry"
+      style={{ "--entry-index": index }}
+      onClick={() => onOpenPost(post.id)}
+      aria-label={`${openLabel}: ${title}`}
+    >
+      <div className="blog-entry-image">
+        <img
+          src={post.image}
+          alt=""
+          loading="lazy"
+          draggable={false}
+          onError={(event) => {
+            event.currentTarget.hidden = true;
+          }}
+        />
+        <span className="blog-entry-number" aria-hidden="true">
+          ENTRY_{String(index + 1).padStart(2, "0")}
+        </span>
+      </div>
+
+      <div className="blog-entry-body">
+        <div className="blog-entry-tags" aria-label="Tags">
+          {post.tags.slice(0, 3).map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
         </div>
-    );
+
+        <h2>{title}</h2>
+        <p>{summary}</p>
+
+        <footer className="blog-entry-footer">
+          <span>
+            <time dateTime={post.date}>{formattedDate}</time>
+            <span aria-hidden="true"> // </span>
+            {post.readTime}
+          </span>
+          <span className="blog-entry-open" aria-hidden="true">
+            {openLabel} &gt;
+          </span>
+        </footer>
+      </div>
+    </button>
+  );
 }
+
 export default PostCard;

@@ -1,58 +1,75 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import Window from "../components/Window";
+import PostCard from "../components/PostCard";
 import { WindowContext } from "../context/WindowContext";
+import { useLanguage } from "../context/LanguageContext";
 import { blogPosts } from "../data/blogPosts";
-import { useTranslation } from 'react-i18next';
+import "../styles/Blog.css";
 
 function BlogWindow({ zIndex }) {
   const { openWindow, closeWindow, bringToFront } = useContext(WindowContext);
-  const { i18n } = useTranslation();
-  const language = i18n.resolvedLanguage || i18n.language || 'es';
-  const [isDark, setIsDark] = useState(false);
+  const { language } = useLanguage();
 
-  useEffect(() => {
-    const update = () => setIsDark(document.documentElement.classList.contains("dark"));
-    update();
-    const obs = new MutationObserver(update);
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => obs.disconnect();
-  }, []);
+  const copy = language === "es"
+    ? {
+        windowTitle: "blog.log",
+        eyebrow: "VIANKA.LOG // ARCHIVO",
+        title: "Notas desde mi escritorio",
+        introduction:
+          "Ideas sobre desarrollo, diseño, aprendizaje y tecnología con propósito.",
+        status: `${blogPosts.length} entradas encontradas`,
+        open: "Leer entrada"
+      }
+    : {
+        windowTitle: "blog.log",
+        eyebrow: "VIANKA.LOG // ARCHIVE",
+        title: "Notes from my desktop",
+        introduction:
+          "Thoughts on development, design, learning and technology with purpose.",
+        status: `${blogPosts.length} entries found`,
+        open: "Read entry"
+      };
 
-  const handlePostClick = (postId) => {
-    const name = `post-${postId}`;
-    console.log("[BlogWindow] open post:", name);
-    openWindow(name);          // openWindow ya lo pone al frente si existe
-    // setTimeout(() => bringToFront(name), 30);  // innecesario => remount extra
-  };
+  const orderedPosts = [...blogPosts].sort(
+    (first, second) => new Date(second.date) - new Date(first.date)
+  );
 
   return (
     <Window
-      title="my blog"
+      title={copy.windowTitle}
       zIndex={zIndex}
+      defaultSize={{ width: 760, height: 640 }}
       onClose={() => closeWindow("blog")}
       onFocus={() => bringToFront("blog")}
     >
-      <div className="blog-shell">
-        <div className="blog-head" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: 800 }}>
-            {language === "en" ? "My Blog" : "Mi Blog"}
-          </h2>
-        </div>
+      <main className="blog-page">
+        <header className="blog-masthead">
+          <p className="blog-eyebrow">{copy.eyebrow}</p>
+          <h1>{copy.title}</h1>
+          <p className="blog-introduction">{copy.introduction}</p>
 
-        <div className="blog-list">
-          {blogPosts.map((post, i) => (
-            <div key={post.id} className="blog-card" onClick={() => handlePostClick(post.id)}>
-              <h3 style={{ margin: "0.75rem 0 0.25rem", opacity: 0.8 }}>#{i + 1}</h3>
-              <p style={{ margin: 0, opacity: 0.9 }}>{post.summary[language]}</p>
-              <div className="blog-meta">
-                <small>{post.date}</small>
-                <small>{post.readTime}</small>
-              </div>
-            </div>
+          <div className="blog-status" aria-live="polite">
+            <span className="blog-status-cursor" aria-hidden="true" />
+            <span>{copy.status}</span>
+            <span aria-hidden="true">READY_</span>
+          </div>
+        </header>
+
+        <section className="blog-post-list" aria-label={copy.title}>
+          {orderedPosts.map((post, index) => (
+            <PostCard
+              key={post.id}
+              post={post}
+              language={language}
+              index={index}
+              openLabel={copy.open}
+              onOpenPost={(postId) => openWindow(`post-${postId}`)}
+            />
           ))}
-        </div>
-      </div>
+        </section>
+      </main>
     </Window>
   );
 }
+
 export default BlogWindow;
