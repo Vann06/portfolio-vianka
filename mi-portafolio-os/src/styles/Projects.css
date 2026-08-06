@@ -215,11 +215,24 @@
   font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
 
 .project-link-primary {
   color: white;
-  background: #69558d;
+  background: #2596be;
+}
+
+.project-link-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(37, 150, 190, 0.5);
+}
+
+.project-link-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.45rem;
+  flex: 0 0 auto;
 }
 
 .project-link-secondary {
@@ -253,8 +266,12 @@ html.dark .project-stack-item {
 }
 
 html.dark .project-link-primary {
-  background: #c8a2c8;
-  color: #241d32;
+  background: #8765e4;
+  color: white;
+}
+
+html.dark .project-link-primary:hover {
+  box-shadow: 0 0 10px rgba(135, 101, 228, 0.55);
 }
 
 html.dark .project-link-secondary {

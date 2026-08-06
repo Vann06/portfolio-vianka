@@ -1,64 +1,82 @@
-import { createContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 
 export const WindowContext = createContext();
 
 export function WindowProvider({ children }) {
   const [windows, setWindows] = useState([]);
-  const [zCounter, setZCounter] = useState(100); 
+  const zCounter = useRef(100);
 
-  const debug = () => {
-    console.table(windows.map(w => ({ name: w.name, z: w.zIndex })));
-  };
-
-  const openWindow = (name) => {
-    console.log("[WindowContext] openWindow:", name);
-    setWindows(prev => {
-      const found = prev.find(w => w.name === name);
-      if (found) {
-        // solo traer al frente
-        const updated = prev.map(w =>
-          w.name === name ? { ...w, zIndex: zCounter + 1 } : w
-        );
-        setZCounter(zCounter + 1);
-        return updated;
-      }
-      const added = [...prev, { name, zIndex: zCounter + 1 }];
-      setZCounter(zCounter + 1);
-      return added;
-    });
-  };
-
-  const closeWindow = (name) => {
-    console.log("[WindowContext] closeWindow:", name);
-    setWindows((prev) => {
-      const filtered = prev.filter((w) => w.name !== name);
-      setTimeout(debug, 0);
-      return filtered;
-    });
-  };
-
-  const bringToFront = (name) => {
-    console.log("[WindowContext] bringToFront:", name);
-    const maxZ = zCounter + 1;
-    setWindows((prev) => {
-      const updated = prev.map((w) =>
-        w.name === name ? { ...w, zIndex: maxZ } : w
+  const openWindow = useCallback((name) => {
+    setWindows((currentWindows) => {
+      const existingWindow = currentWindows.find(
+        (windowItem) => windowItem.name === name
       );
-      setTimeout(debug, 0);
-      return updated;
+      const currentTopZ = Math.max(
+        0,
+        ...currentWindows.map((windowItem) => windowItem.zIndex)
+      );
+
+      if (existingWindow?.zIndex === currentTopZ) {
+        return currentWindows;
+      }
+
+      const nextZ = ++zCounter.current;
+
+      if (existingWindow) {
+        return currentWindows.map((windowItem) =>
+          windowItem.name === name
+            ? { ...windowItem, zIndex: nextZ }
+            : windowItem
+        );
+      }
+
+      return [...currentWindows, { name, zIndex: nextZ }];
     });
-    setZCounter(maxZ);
-  };
+  }, []);
+
+  const closeWindow = useCallback((name) => {
+    setWindows((currentWindows) =>
+      currentWindows.filter((windowItem) => windowItem.name !== name)
+    );
+  }, []);
+
+  const bringToFront = useCallback((name) => {
+    setWindows((currentWindows) => {
+      const targetWindow = currentWindows.find(
+        (windowItem) => windowItem.name === name
+      );
+      const currentTopZ = Math.max(
+        0,
+        ...currentWindows.map((windowItem) => windowItem.zIndex)
+      );
+
+      if (!targetWindow || targetWindow.zIndex === currentTopZ) {
+        return currentWindows;
+      }
+
+      const nextZ = ++zCounter.current;
+
+      return currentWindows.map((windowItem) =>
+        windowItem.name === name
+          ? { ...windowItem, zIndex: nextZ }
+          : windowItem
+      );
+    });
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ windows, openWindow, closeWindow, bringToFront }),
+    [bringToFront, closeWindow, openWindow, windows]
+  );
 
   return (
-    <WindowContext.Provider
-      value={{
-        windows,
-        openWindow,
-        closeWindow,
-        bringToFront,
-      }}
-    >
+    <WindowContext.Provider value={contextValue}>
       {children}
     </WindowContext.Provider>
   );

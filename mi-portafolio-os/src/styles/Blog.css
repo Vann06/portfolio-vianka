@@ -497,6 +497,25 @@ html.dark .blog-article-content strong {
   color: #fff;
 }
 
+/* Light paper accents keep dark-purple ink in dark mode for readable contrast. */
+html.dark .blog-article-content .post-section {
+  color: #35264f;
+  background: #f4f0ff;
+  border-left: 4px solid #8765e4;
+}
+
+html.dark .blog-article-cta {
+  color: #35264f;
+  background: #f4f0ff;
+  border-color: #d8cfee;
+}
+
+html.dark .blog-article-cta a {
+  color: #35264f;
+  background: #fff;
+  border-color: #35264f;
+}
+
 @media (max-width: 620px) {
   .blog-article-header h1 {
     font-size: 2rem;

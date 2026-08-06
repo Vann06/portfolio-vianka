@@ -3,6 +3,7 @@ import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
 import { useLanguage } from "../context/LanguageContext";
 import { projects } from "../data/projects";
+import githubIcon from "../assets/github.svg";
 import {
   asArray,
   getLocalizedValue
@@ -166,6 +167,12 @@ function ProjectDetailWindow({
               rel="noopener noreferrer"
               className="project-link project-link-primary"
             >
+              <img
+                className="project-link-icon"
+                src={githubIcon}
+                alt=""
+                aria-hidden="true"
+              />
               {copy.github}
             </a>
           )}

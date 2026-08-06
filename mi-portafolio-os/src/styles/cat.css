@@ -4,9 +4,114 @@
 .floating-cat {
   --cat-overlap: 36px;             /* a bit lower (more overlap) */
   position: absolute;
+  left: 46%;
   bottom: calc(100% - var(--cat-overlap));
   width: 176px;  /* bigger */
   height: 130px; /* bigger */
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  transform: translateX(-50%);
+  z-index: 5;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.floating-cat:focus-visible {
+  outline: 2px dashed #346285;
+  outline-offset: 4px;
+}
+
+html.dark .floating-cat:focus-visible {
+  outline-color: #dddaf0;
+}
+
+.cat-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  transition: opacity 120ms steps(2, end);
+}
+
+.cat-image-normal {
+  opacity: 1;
+}
+
+.cat-image-hover {
+  opacity: 0;
+}
+
+.floating-cat:hover .cat-image-normal,
+.floating-cat:focus-visible .cat-image-normal,
+.floating-cat.is-interacting .cat-image-normal {
+  opacity: 0;
+}
+
+.floating-cat:hover .cat-image-hover,
+.floating-cat:focus-visible .cat-image-hover,
+.floating-cat.is-interacting .cat-image-hover {
+  opacity: 1;
+}
+
+.cat-tooltip {
+  position: absolute;
+  top: 12px;
+  left: calc(100% - 12px);
+  min-width: max-content;
+  padding: 0.28rem 0.48rem;
+  color: #1b2c45;
+  background: #fffdf8;
+  border: 2px solid #346285;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(27, 44, 69, 0.2);
+  font-family: "Courier New", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 3px);
+  transition: opacity 100ms linear, transform 100ms steps(2, end);
+}
+
+.cat-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: inherit;
+  border-left: 2px solid #346285;
+  border-bottom: 2px solid #346285;
+  transform: translate(-5px, -50%) rotate(45deg);
+}
+
+.floating-cat:hover .cat-tooltip,
+.floating-cat:focus-visible .cat-tooltip,
+.floating-cat.is-interacting .cat-tooltip {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+html.dark .cat-tooltip {
+  color: #f5efff;
+  background: #292145;
+  border-color: #dddaf0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+html.dark .cat-tooltip::after {
+  border-color: #dddaf0;
 }
 
 /* Desktop medio */
@@ -72,5 +177,12 @@
 @media (max-width: 420px) {
   .layout-shell {
     padding-top: 50px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cat-image,
+  .cat-tooltip {
+    transition: none;
   }
 }

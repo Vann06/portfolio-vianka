@@ -1,94 +1,121 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { WindowContext } from "../context/WindowContext";
-import useSound from "use-sound";
 import { useSoundContext } from "../context/SoundContext";
+import { useLanguage } from "../context/LanguageContext";
 import catDark from "../assets/CAT.png";
+import catDarkHover from "../assets/CAT_1.png";
 import catLight from "../assets/CAT_2.png";
+import catLightHover from "../assets/CAT_2_2.png";
+
+
+const CAT_MEOW_URL = "https://res.cloudinary.com/dxjrdqbio/video/upload/v1786044399/meow_qzttlx.mp3";
 
 function useIsDark() {
   const [isDark, setIsDark] = useState(() =>
     document.documentElement.classList.contains("dark")
   );
+
   useEffect(() => {
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains("dark"));
     });
+
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class"],
+      attributeFilter: ["class"]
     });
+
     return () => observer.disconnect();
   }, []);
+
   return isDark;
 }
 
 function FloatingCat() {
-  const [isClickGlow, setIsClickGlow] = useState(false);
-  const [hover, setHover] = useState(false);
-  const { openWindow, bringToFront } = useContext(WindowContext);
-  const [playCat] = useSound(
-    "https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/open_f89xtv.mp3",
-    { volume: 1 }
-  );
+  const [isInteracting, setIsInteracting] = useState(false);
+  const audioRef = useRef(null);
+  const lastMeowAt = useRef(0);
+  const { openWindow } = useContext(WindowContext);
   const { isMuted } = useSoundContext();
+  const { language } = useLanguage();
   const isDark = useIsDark();
 
-  const handleCatClick = () => {
-    setIsClickGlow(true);
-    if (!isMuted) playCat();
-    openWindow("blog");
-    setTimeout(() => bringToFront("blog"), 50);
-    setTimeout(() => setIsClickGlow(false), 700);
+  useEffect(() => {
+    [catDarkHover, catLightHover].forEach((source) => {
+      const image = new window.Image();
+      image.src = source;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!CAT_MEOW_URL) return undefined;
+
+    const audio = new window.Audio(CAT_MEOW_URL);
+    audio.preload = "auto";
+    audio.volume = 0.20;
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  const playMeow = () => {
+    const audio = audioRef.current;
+    const now = Date.now();
+
+    if (isMuted || !audio || now - lastMeowAt.current < 900) return;
+
+    lastMeowAt.current = now;
+    audio.currentTime = 0;
+    void audio.play().catch(() => undefined);
   };
 
-  const imgSrc = isDark ? catDark : catLight;
-  const activeGlow = hover || isClickGlow;
+  const handleCatClick = () => {
+    playMeow();
+    openWindow("blog");
+  };
 
-  const glowFilter = isDark
-    ? "drop-shadow(0 0 14px rgba(210, 170, 255, 0.85)) drop-shadow(0 0 30px rgba(152, 120, 255, 0.55))"
-    : "drop-shadow(0 0 14px rgba(255,220,120,.9)) drop-shadow(0 0 30px rgba(255,235,160,.55))";
+  const label = language === "es" ? "Abrir blog" : "Open blog";
+  const tooltip = language === "es" ? "¡miau! ¿blog?" : "meow! blog?";
 
-  const baseShadow = "drop-shadow(2px 3px 4px rgba(0,0,0,.35))";
+  const beginInteraction = () => {
+    setIsInteracting(true);
+    playMeow();
+  };
 
   return (
-    <div
+    <button
+      type="button"
+      className={`floating-cat ${isInteracting ? "is-interacting" : ""}`}
       onClick={handleCatClick}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      className="floating-cat"
-      style={{
-        position: "absolute",
-        left: "46%", 
-        transform: activeGlow
-          ? "translateX(-50%) scale(1.14) translateY(-4px)"
-          : "translateX(-50%) scale(1)",
-        cursor: "pointer",
-        zIndex: 5,
-        transition: "transform .35s ease, filter .5s ease",
-        filter: activeGlow ? glowFilter : baseShadow,
-      }}
-      aria-label="Abrir blog"
+      onMouseEnter={beginInteraction}
+      onMouseLeave={() => setIsInteracting(false)}
+      onPointerLeave={() => setIsInteracting(false)}
+      onFocus={beginInteraction}
+      onBlur={() => setIsInteracting(false)}
+      aria-label={label}
+      aria-describedby="cat-tooltip"
     >
+      <span id="cat-tooltip" className="cat-tooltip" role="tooltip">
+        {tooltip}
+      </span>
+
       <img
-        src={imgSrc}
-        alt="Abrir blog"
-        style={{
-          borderRadius: "18px",
-          objectFit: "cover",
-          userSelect: "none",
-          pointerEvents: "none",
-          transition: "inherit",
-          width: "100%",
-          height: "100%",
-        }}
+        src={isDark ? catDark : catLight}
+        alt=""
+        className="cat-image cat-image-normal"
         draggable={false}
-        onError={(e) => {
-          console.warn("[Cat] fallback dark");
-          e.currentTarget.src = catDark;
-        }}
       />
-      
-    </div>
+
+      <img
+        src={isDark ? catDarkHover : catLightHover}
+        alt=""
+        className="cat-image cat-image-hover"
+        draggable={false}
+      />
+    </button>
   );
 }
 
