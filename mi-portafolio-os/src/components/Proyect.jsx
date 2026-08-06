@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "../styles/Proyect.css";
+import { useTranslation } from 'react-i18next';
 
 function Proyect({ title, description, tech, link, image }) {
   const [isDark, setIsDark] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const update = () => {
@@ -29,7 +31,7 @@ function Proyect({ title, description, tech, link, image }) {
         <p>{description}</p>
         <span className="tech">{tech}</span>
         <a href={link} target="_blank" rel="noopener noreferrer">
-          View on GitHub
+          {t('projects.viewOnGitHub')}
         </a>
       </div>
 

@@ -1,0 +1,115 @@
+{
+  "app": {
+    "title": "Escritorio de Vianka",
+    "open": "Abrir",
+    "close": "Cerrar",
+    "minimize": "Minimizar",
+    "maximize": "Maximizar"
+  },
+  "windows": {
+    "about": "Info",
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "post": "Artículo",
+    "contact": "Contacto",
+  "resume": "Curriculum",
+  "email": "Correo",
+  "home": "inicio",
+  "links": "Enlaces"
+  },
+  "resume": {
+  "title": "Mi Currículum",
+  "subtitle": "Puedes ver o descargar mi CV abajo. ¡Gracias por tu interés!",
+  "spanish": "Español 🇬🇹",
+  "english": "Inglés 🇺🇸",
+  "downloadEs": "Descargar CV en Español",
+  "downloadEn": "Descargar CV en Inglés"
+  },
+  "blog": {
+    "title": "Mi Blog",
+    "readMore": "Leer más",
+    "minutes": "min",
+    "resources": "También puedes leer",
+    "sources": "Fuentes",
+    "by": "por"
+  },
+  "post": {
+    "words": "palabras"
+  },
+  "about": {
+    "hello": "¡Hola! Soy Vianka",
+    "subtitle": "Ciencias de la Computación + Desarrolladora orientada a producto",
+    "cta": "Ver CV",
+    "aboutMeTitle": "Sobre mí",
+    "bioP1": "Creo que la tecnología más poderosa es la que entiende a las personas. Por eso, mi trabajo une lógica y empatía, transformando ideas complejas en soluciones claras, útiles y con propósito.",
+    "bioP2": "En Ciencias de la Computación aplico un enfoque que combina análisis profundo, diseño estructurado y sensibilidad por la experiencia del usuario. Me motiva crear sistemas escalables que integren precisión con usabilidad.",
+    "bioP3": "Combino profundidad técnica con creatividad consciente, buscando equilibrio entre innovación y significado. Mi objetivo no es solo desarrollar, sino crear lo que realmente importa.",
+    "bioP4": "Hay quienes buscan su propósito en lo que pueden tener. Yo lo encuentro en lo que puedo crear. La tecnología, para mí, es un lenguaje que une lo lógico con lo humano. Cada idea aporta algo nuevo como conectar, innovar y de hacer un mundo mejor.",
+    "bioP5": "Y si el futuro se escribe con código, entonces el mío será con propósito en cada línea, porque creo en una tecnología que no solo funcione, sino que también se sienta.",
+    "stackTitle": "Stack Tecnológico",
+    "educationTitle": "Formación Académica",
+    "languagesTitle": "Idiomas",
+    "stack": {
+      "languages_label": "Lenguajes:",
+      "languages": "Python, Java, JavaScript, PHP, SQL",
+      "frontend_label": "Frontend:",
+      "frontend": "HTML, CSS, Vue.js, React, Next.js, Tailwind CSS, Bootstrap",
+      "backend_label": "Backend:",
+      "backend": "Laravel, Node.js",
+      "database_label": "Base de datos:",
+      "database": "PostgreSQL, MySQL",
+      "tools_label": "Herramientas:",
+      "tools": "Git, Docker, GitHub"
+    },
+    "uniPeriod": "2023 - 7mo Semestre",
+    "langSpanish": "Español: Nativo",
+    "langEnglish": "Inglés: Avanzado C2",
+    "langJapanese": "Japonés: N5 Básico"
+  },
+  "controls": {
+    "language": "Idioma",
+    "theme": "Tema",
+    "sound": "Sonido"
+  },
+  "home": {
+    "hi": "¡hola!",
+    "im": "soy {{name}}",
+    "subtitle": "Desarrolladora fullstack, Diseñadora UX y Analista de Datos"
+  },
+  "contact": {
+    "linkOpenNote": "¡Al hacer clic en cualquier enlace se abrirá en una nueva pestaña!"
+  },
+  "emailForm": {
+    "title": "¿Quieres ponerte en contacto?",
+    "intro": "Puedes enviarme un correo si quieres, ¡estaré feliz de hablar contigo! :D",
+    "name": "Tu nombre",
+    "email": "Tu correo",
+    "subject": "Asunto",
+    "message": "Tu mensaje aquí..",
+    "send": "Enviar",
+    "successTitle": "¡Correo enviado con éxito!",
+    "successSubtitle": "¡Me pondré en contacto contigo muy pronto! 💜",
+    "error": "Error al enviar el mensaje. Intenta de nuevo."
+  },
+  "projects": {
+    "stackTitle": "Tech Stack",
+    "viewOnGitHub": "Ver en GitHub",
+    "items": {
+      "sol": {
+        "title": "SOL Store",
+        "description": "Tienda e-commerce con sistema de inventario, autenticación de usuarios y administración con Laravel y Vue.js.",
+        "tech": "Laravel, Vue, PostgreSQL, Docker, Blade, PHP, CSS, JavaScript"
+      },
+      "miniso": {
+        "title": "Miniso E-commerce",
+        "description": "E-commerce de Miniso con carrito de compras, autenticación de usuarios y administración de productos usando MERN stack.",
+        "tech": "React, JavaScript, CSS, HTML, MongoDB, Node.js, Express"
+      },
+      "tuto": {
+        "title": "Tuto!",
+        "description": "Aplicación móvil para encontrar tutores y clases particulares, desarrollada tanto para tutores como para estudiantes",
+        "tech": "Android Studio, Kotlin"
+      }
+    }
+  }
+}

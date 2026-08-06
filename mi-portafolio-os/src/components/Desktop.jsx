@@ -17,6 +17,7 @@ import linkedin from "../assets/linkedin.svg";
 import instagram from "../assets/instagram.svg";
 import github from "../assets/github.svg";
 import { useSoundContext } from "../context/SoundContext";
+import { useTranslation } from 'react-i18next';
 
 function Desktop() {
   const[isDark, setIsDark] = useState(false);
@@ -24,6 +25,7 @@ function Desktop() {
   const [playOpen] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/open_f89xtv.mp3", {volume: 1});
 
   const{isMuted} = useSoundContext();
+  const { t } = useTranslation();
 
   const handleClick = () => {
     if (!isMuted) playOpen();
@@ -43,26 +45,31 @@ function Desktop() {
   const icons = [
     {
       title: "about",
+      label: t('windows.about'),
       iconLight: icon_about,
       iconDark: icon_about_dark,
     },
     {
       title: "links",
+      label: t('windows.links'),
       iconLight: icon_links,
       iconDark: icon_links_dark,
     },
     {
       title: "work",
+      label: t('windows.projects'),
       iconLight: icon_work,
       iconDark: icon_work_dark,
     },
     {
       title: "resume",
+      label: t('windows.resume'),
       iconLight: icon_cv,
       iconDark: icon_cv_dark,
     },
     {
       title: "contact",
+      label: t('windows.contact'),
       iconLight: icon_contact,
       iconDark: icon_contact_dark,
     }
@@ -100,14 +107,14 @@ function Desktop() {
           textAlign: "left",
         }}
       >
-        home
+  {t('windows.home')}
       </div>
   
 
       {/* Contenido */}
       <div style={{ padding: "2rem", textAlign: "center" }}>
         <h1 style={{ fontSize: "2.5rem", marginBottom: "0.5rem", fontWeight: 300 }}>
-          hi!{" "}
+          {t('home.hi')} {" "}
           <span
             style={{
               fontWeight: "bold",
@@ -115,14 +122,11 @@ function Desktop() {
             }}
             className="dark:text-[#a585ff]"
           >
-            I’m Vianka
+            {t('home.im', { name: 'Vianka' })}
           </span>
         </h1>
-        <p style={{ 
-          fontSize: "1.2rem", 
-          color: isDark ? "white" : "#1b2c45"
-           }} className="dark:text-gray-300">
-          Fullstack dev, Ux Designer, and Illustrator
+        <p style={{ fontSize: "1.2rem", color: isDark ? "white" : "#1b2c45" }} className="dark:text-gray-300">
+          {t('home.subtitle')}
         </p>
 
         {/* Iconos */}
@@ -139,6 +143,7 @@ function Desktop() {
             <DesktopIcon
               key={item.title}
               title={item.title}
+              label={item.label}
               iconLight={item.iconLight}
               iconDark={item.iconDark}
               onClick={() =>  {

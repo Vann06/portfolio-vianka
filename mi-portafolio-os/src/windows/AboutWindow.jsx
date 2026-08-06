@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
+import { useTranslation } from 'react-i18next';
 
 function AboutWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
+  const { t } = useTranslation();
+  const youtubeVideoId = "Dy6XDMNXX98";
 
   return (
     <Window
@@ -14,7 +17,7 @@ function AboutWindow({ zIndex }) {
     >
       <div className="window-center" style={{ padding: "1.5rem" }}>
         <img
-          src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1747715633/Profile2_bumxj0.jpg"
+          src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1762904967/yio3_sfljta.jpg"
           alt="Profile"
           style={{
             width: "120px",
@@ -35,11 +38,8 @@ function AboutWindow({ zIndex }) {
           Vianka Castro
         </h1>
 
-        <p
-          style={{ fontWeight: 600, marginBottom: "1.5rem", fontSize: "1.05rem" }}
-          className="dark:text-gray-300"
-        >
-          FullStack Developer & UX Designer
+        <p style={{ fontWeight: 600, marginBottom: "1.5rem", fontSize: "1.05rem" }} className="dark:text-gray-300">
+          {t('about.subtitle')}
         </p>
 
         {/* SOBRE MI */}
@@ -47,22 +47,15 @@ function AboutWindow({ zIndex }) {
           style={{ marginBottom: "2rem", textAlign: "left", lineHeight: 1.7 }}
           className="dark:text-gray-300"
         >
-          <h3
-            style={{ fontWeight: "bold", marginBottom: "1rem", fontSize: "1.05rem" }}
-            className="dark:text-white"
-          >
-            Sobre mí
+          <h3 style={{ fontWeight: "bold", marginBottom: "1rem", fontSize: "1.05rem" }} className="dark:text-white">
+            {t('about.aboutMeTitle')}
           </h3>
 
-          <p style={{ marginBottom: "1rem" }}>
-            Creo que la <strong>tecnología</strong> más poderosa es la que entiende a las personas. Por eso, mi trabajo une <em>lógica y empatía</em>, transformando ideas complejas en soluciones claras, útiles y con propósito. Para mí, cada proyecto es una oportunidad de construir algo que no solo funcione, sino que inspire y deje huella.
-          </p>
-          <p style={{ marginBottom: "1rem" }}>
-            En <strong>Computer Science</strong>, aplico un enfoque que combina análisis profundo, diseño estructurado y sensibilidad por la experiencia del usuario. Me motiva crear sistemas escalables que integren precisión con usabilidad, asegurando que cada desarrollo aporte valor real y duradero. 
-          </p>
-          <p style={{ marginBottom: "1rem" }}>
-            Combino <strong>profundidad técnica</strong> con <strong>creatividad consciente</strong>, buscando siempre un equilibro entre innovación y significado. Mi objetivo no es solo desarrollar tecnología, sino crear puentes entre lo que es posible y lo que realmente importa. 
-          </p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP1')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP2')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP3')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP4')}</p>
+          <p style={{ marginBottom: "1rem" }}>{t('about.bioP5')}</p>
         </div>
         <hr
           style={{
@@ -77,13 +70,45 @@ function AboutWindow({ zIndex }) {
 
       {/* RESTO SECCIONES */}
       <div style={{ padding: "0 1.5rem 1.5rem" }}>
+
+        {/* ENLACE A VIDEO INTRODUCTORIO */}
+        {/* VIDEO INTRODUCTORIO */}
+
+        <section>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "560px",
+              margin: "0 auto",
+              aspectRatio: "16 / 9",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.16)",
+              border: "2px solid #d4c5a9"
+            }}
+            className="dark:border-[#C8A2C8]"
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${youtubeVideoId}`}
+              title={t("about.videoTitle")}
+              width="100%"
+              height="100%"
+              style={{
+                display: "block",
+                border: "none"
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </section>
+
+
         {/* STACK */}
         <section style={{ marginBottom: "1.5rem" }}>
-          <h3
-            style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
-            className="dark:text-white"
-          >
-            Stack Tecnológico
+          <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">
+            {t('about.stackTitle')}
           </h3>
           <div
             style={{
@@ -95,19 +120,19 @@ function AboutWindow({ zIndex }) {
             className="dark:text-gray-300"
           >
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Languages:</strong> Python, Java, JavaScript, PHP, SQL
+              <strong>{t('about.stack.languages_label')}</strong> {t('about.stack.languages')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Frontend:</strong> HTML, CSS, Vue.js, React
+              <strong>{t('about.stack.frontend_label')}</strong> {t('about.stack.frontend')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Backend:</strong> Laravel, Node.js
+              <strong>{t('about.stack.backend_label')}</strong> {t('about.stack.backend')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Database:</strong> PostgreSQL, MySQL
+              <strong>{t('about.stack.database_label')}</strong> {t('about.stack.database')}
             </div>
             <div className="pb-2 border-b border-dashed" style={{ borderColor: "#d4c5a9" }}>
-              <strong>Tools:</strong> Git, Docker, GitHub
+              <strong>{t('about.stack.tools_label')}</strong> {t('about.stack.tools')}
             </div>
           </div>
         </section>
@@ -124,11 +149,8 @@ function AboutWindow({ zIndex }) {
 
         {/* FORMACION */}
         <section style={{ marginBottom: "1.5rem" }}>
-          <h3
-            style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
-            className="dark:text-white"
-          >
-            Formación Académica
+          <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">
+            {t('about.educationTitle')}
           </h3>
           <div style={{ fontSize: ".95rem", lineHeight: 1.5 }} className="dark:text-gray-300">
             <div
@@ -140,7 +162,7 @@ function AboutWindow({ zIndex }) {
               className="dark:border-[#4a5568]"
             >
               <p><strong>Universidad del Valle</strong> – Ingeniería en Computación</p>
-              <p style={{ fontSize: ".85rem" }} className="text-[#8a8a8a] dark:text-gray-400">2023 - Actualidad</p>
+              <p style={{ fontSize: ".85rem" }} className="text-[#8a8a8a] dark:text-gray-400">{t('about.uniPeriod')}</p>
             </div>
             <div>
               <p><strong>Colegio Decroly Americano</strong> – Bachiller en Ciencias & Letras</p>
@@ -161,25 +183,16 @@ function AboutWindow({ zIndex }) {
 
         {/* IDIOMAS */}
         <section>
-            <h3
-              style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }}
-              className="dark:text-white"
-            >
-              Idiomas
+            <h3 style={{ fontWeight: "bold", marginBottom: "0.8rem", fontSize: "1.05rem" }} className="dark:text-white">
+              {t('about.languagesTitle')}
             </h3>
             <div
               style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", fontSize: ".95rem" }}
               className="dark:text-gray-300"
             >
-              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
-                <strong>Español:</strong> Nativo
-              </div>
-              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
-                <strong>Inglés:</strong> Avanzado C2
-              </div>
-              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">
-                <strong>Japonés:</strong> N5 Básico
-              </div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">{t('about.langSpanish')}</div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">{t('about.langEnglish')}</div>
+              <div style={{ borderBottom: "1px dashed #d4c5a9", paddingBottom: ".3rem" }} className="dark:border-[#4a5568]">{t('about.langJapanese')}</div>
             </div>
         </section>
       </div>

@@ -2,7 +2,7 @@ import AnimatedIcon from "./AnimatedIcon";
 import { WindowContext } from "../context/WindowContext";
 import { useEffect, useState, useContext } from "react";
 
-function DesktopIcon({ title, iconLight, iconDark, onClick }) {
+function DesktopIcon({ title, iconLight, iconDark, onClick, label }) {
   const [isDark, setIsDark] = useState(false);
   const { openWindow } = useContext(WindowContext);
 
@@ -27,11 +27,11 @@ function DesktopIcon({ title, iconLight, iconDark, onClick }) {
         <AnimatedIcon
           srcLight={iconLight}
           srcDark={iconDark}
-          alt={title}
+          alt={label || title}
           size={48}
         />
       </div>
-      <p className="text-sm mt-1 text-gray-800 dark:text-white">{title}</p>
+      <p className="text-sm mt-1 text-gray-800 dark:text-white">{label || title}</p>
     </div>
 
     </div>

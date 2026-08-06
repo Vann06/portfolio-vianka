@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
 import AnimatedIcon from "../components/AnimatedIcon";
+import { useTranslation } from 'react-i18next';
 
 // Iconos
 import linkedin_dark from "../assets/linkedin.svg";
@@ -19,13 +20,14 @@ import youtube_dark from "../assets/icon_yt_dark.webp";
 
 function LinksWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
+  const { t } = useTranslation();
 
   const links = [
     { name: "Twitter", iconLight: twitter, iconDark: twitter_dark, url: "https://x.com/hatsunemiku?lang=en" },
     { name: "YouTube", iconLight: youtube, iconDark: youtube_dark, url: "https://youtube.com" },
     { name: "LinkedIn", iconLight: linkedin, iconDark: linkedin_dark, url: "https://www.linkedin.com/in/vianka-castro-121a90364/" },
     { name: "Discord", iconLight: discord, iconDark: discord_dark, url: "https://discord.gg/aQ8xX67H"},
-    { name: "Instagram", iconLight: instagram, iconDark: instagram_dark, url: "https://www.instagram.com/copy._.cat/" },
+    { name: "Instagram", iconLight: instagram, iconDark: instagram_dark, url: "https://www.instagram.com/_viankav/" },
     { name: "GitHub", iconLight: github_dark, iconDark: github, url: "https://www.github.com/Vann06" }
   ];
 
@@ -83,7 +85,7 @@ function LinksWindow({ zIndex }) {
         }}
         className="dark:bg-[#2e2e3e] dark:text-white"
       >
-        Clicking any of the links will open a new tab!
+        {t('app.open')} {t('windows.links') || ''}
       </div>
     </Window>
   );

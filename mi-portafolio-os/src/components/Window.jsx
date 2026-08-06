@@ -1,100 +1,182 @@
 import { Rnd } from "react-rnd";
-import { useState, useEffect } from "react";
-import closeIcon from '../assets/icon_close_white.png'
+import { useEffect, useMemo, useRef, useState } from "react";
+import closeIcon from "../assets/icon_close_white.png";
 import useSound from "use-sound";
-import { useSoundContext } from "../context/SoundContext"; 
+import { useSoundContext } from "../context/SoundContext";
 
+const MOBILE_BREAKPOINT = 768;
+const MOBILE_SIDE_MARGIN = 10;
+const MOBILE_TOP_SAFE_AREA = 96;
+const MOBILE_BOTTOM_MARGIN = 16;
 
-function Window({ title, children, onClose, zIndex = 10, onFocus }) {
+function getViewport() {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight
+  };
+}
+
+function getWindowLayout(viewport, isMobile, defaultSize) {
+  const sideMargin = isMobile ? MOBILE_SIDE_MARGIN : 24;
+  const topSafeArea = isMobile ? MOBILE_TOP_SAFE_AREA : 80;
+  const bottomMargin = isMobile ? MOBILE_BOTTOM_MARGIN : 24;
+  const availableWidth = Math.max(280, viewport.width - sideMargin * 2);
+  const availableHeight = Math.max(
+    280,
+    viewport.height - topSafeArea - bottomMargin
+  );
+  const width = Math.min(defaultSize.width, availableWidth);
+  const height = Math.min(defaultSize.height, availableHeight, 700);
+
+  return {
+    x: isMobile
+      ? sideMargin
+      : Math.max(sideMargin, (viewport.width - width) / 2),
+    y: isMobile
+      ? Math.max(topSafeArea, viewport.height - height - bottomMargin)
+      : Math.max(24, Math.min(80, viewport.height - height - bottomMargin)),
+    width,
+    height
+  };
+}
+
+function Window({
+  title,
+  children,
+  onClose,
+  zIndex = 10,
+  onFocus,
+  defaultSize = { width: 550, height: 500 }
+}) {
   const [isDark, setIsDark] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [playClose] = useSound("https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/close_uufjve.mp3", {volume:1});
-  const { isMuted } = useSoundContext(); 
+  const [viewport, setViewport] = useState(getViewport);
+  const rndRef = useRef(null);
+  const previousMode = useRef(viewport.width < MOBILE_BREAKPOINT);
+  const [playClose] = useSound(
+    "https://res.cloudinary.com/dxjrdqbio/video/upload/v1748740505/close_uufjve.mp3",
+    { volume: 1 }
+  );
+  const { isMuted } = useSoundContext();
+  const isMobile = viewport.width < MOBILE_BREAKPOINT;
+  const defaultWidth = defaultSize.width;
+  const defaultHeight = defaultSize.height;
+  const layout = useMemo(
+    () =>
+      getWindowLayout(viewport, isMobile, {
+        width: defaultWidth,
+        height: defaultHeight
+      }),
+    [defaultHeight, defaultWidth, isMobile, viewport]
+  );
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    let resizeFrame;
+
+    const handleResize = () => {
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => {
+        const nextViewport = getViewport();
+
+        setViewport((current) => {
+          const crossedBreakpoint =
+            (current.width < MOBILE_BREAKPOINT) !==
+            (nextViewport.width < MOBILE_BREAKPOINT);
+
+          if (!crossedBreakpoint && current.width === nextViewport.width) {
+            return current;
+          }
+
+          return nextViewport;
+        });
+      });
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(resizeFrame);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useEffect(() => {
-    const update = () => {
+    const modeChanged = previousMode.current !== isMobile;
+
+    if (rndRef.current && (isMobile || modeChanged)) {
+      rndRef.current.updateSize({
+        width: layout.width,
+        height: layout.height
+      });
+      rndRef.current.updatePosition({ x: layout.x, y: layout.y });
+    }
+
+    previousMode.current = isMobile;
+  }, [isMobile, layout]);
+
+  useEffect(() => {
+    const updateTheme = () => {
       setIsDark(document.documentElement.classList.contains("dark"));
     };
-    update();
-    const observer = new MutationObserver(update);
+
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ["class"],
+      attributeFilter: ["class"]
     });
+
     return () => observer.disconnect();
   }, []);
 
-  // DESKTOP MODE
-  if (!isMobile) {
-    return (
-      <Rnd
-        default={{ x: 200, y: 100, width: 550, height: 500 }}
-        minWidth={300}
-        maxHeight={700}
-        bounds="window"
-        style={{ zIndex }}
-        onMouseDown={onFocus}
-      >
-        <div className={`window-container ${isDark ? "dark" : ""}`}>
-          <div className="window-header handle">
-            <span>{title}</span>
-            {onClose && (
-              <button 
-              onClick={() => {
-                if (!isMuted) playClose();
-                onClose();
-              }} className="window-close">
-                [x]
-              </button>
-            )}
-          </div>
-          <div className="window-content">{children}</div>
-        </div>
-      </Rnd>
-    );
-  }
+  const handleClose = () => {
+    if (!isMuted) playClose();
+    onClose?.();
+  };
 
-  // MOBILE MODE
   return (
-    <div
-      className={`mobile-window ${isDark ? "dark" : ""}`}
-      style={{
-        zIndex,
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        width: "100%",
-        maxHeight: "90vh",
-        overflowY: "auto",
-        borderTopLeftRadius: "16px",
-        borderTopRightRadius: "16px",
-        transition: "transform 0.3s ease",
-      }}
+    <Rnd
+      ref={rndRef}
+      className="window-rnd"
+      default={layout}
+      minWidth={isMobile ? Math.min(280, layout.width) : 300}
+      minHeight={isMobile ? Math.min(280, layout.height) : 300}
+      maxWidth={Math.max(280, viewport.width - (isMobile ? 20 : 24))}
+      maxHeight={Math.max(280, viewport.height - (isMobile ? 112 : 24))}
+      bounds="window"
+      dragHandleClassName="window-header"
+      cancel=".window-close"
+      enableResizing={!isMobile}
+      style={{ zIndex }}
+      onMouseDown={onFocus}
+      onTouchStart={onFocus}
     >
-      <div className="window-header handle">
-        <span>{title}</span>
-        {onClose && (
-          <button onClick={() => {
-                if (!isMuted) playClose();
-                onClose();
-              }} className="window-close">
-            <img
-              src={closeIcon}
-              alt="close"
-              width="24"
-              style={{ pointerEvents: "none" }}
-            />
-          </button>
-        )}
+      <div
+        className={`${isMobile ? "mobile-window" : "window-container"} ${
+          isDark ? "dark" : ""
+        }`}
+      >
+        <div className="window-header">
+          <span className="window-title">{title}</span>
+
+          {onClose && (
+            <button
+              type="button"
+              className="window-close"
+              onClick={handleClose}
+              aria-label={`Close ${title}`}
+            >
+              {isMobile ? (
+                <img src={closeIcon} alt="" width="22" draggable={false} />
+              ) : (
+                "[x]"
+              )}
+            </button>
+          )}
+        </div>
+
+        <div className="window-content">{children}</div>
       </div>
-      <div className="window-content">{children}</div>
-    </div>
+    </Rnd>
   );
 }
 

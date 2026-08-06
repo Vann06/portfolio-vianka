@@ -14,22 +14,19 @@ Welcome to my personal portfolio — designed to feel like a **retro computer de
 
 ---
 
-## ✨ Features
+## Features
 
-- 🖥️ **Desktop-style UI**: Inspired by vintage OS, works like opening folders and draggable windows.
-- 🌙 **Dark & Light Mode**: Toggle themes with smooth transitions.
-- 🖱️ **Draggable & Resizable**: Powered by `react-rnd`, also optimized for mobile.
-- 🧍 **About Me**: Studies, skills, and personality.
-- 🔗 **Links**: Social and dev links (LinkedIn, GitHub, Discord...).
-- 📬 **Contact**: Fun animated form with EmailJS.
-- 📄 **Resume**: Preview + download in English and Spanish.
-- 🧪 **Projects**: Selection of personal projects with tools used.
+- **About Me**: Studies, skills, and personality.
+- **Links**: Social and dev links (LinkedIn, GitHub, Discord...).
+- **Contact**: Fun animated form with EmailJS.
+- **Resume**: Preview + download in English and Spanish.
+- **Projects**: Selection of personal projects with tools used.
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
-### 🧱 Prerequisites
+### Prerequisites
 
 - Node.js >= 16
 - npm / yarn / pnpm
@@ -42,14 +39,14 @@ cd mi-portafolio-os
 npm install
 ```
 
-### ▶️ Local Development
+### ▶ Local Development
 
 ```bash
 npm run dev
 # Open http://localhost:5173 in your browser
 ```
 
-### 📦 Useful Commands
+###  Useful Commands
 
 | Command           | Description                     |
 |------------------|---------------------------------|
@@ -63,18 +60,10 @@ npm run dev
 
 - you can just go and see it here:
 👉 [https://vann06.github.io](https://vann06.github.io/portfolio-vianka/)
----
-## 🧩 Available Windows
-
-- 🧍 **About** – Personal info, skills, background.
-- 📎 **Links** – Twitter, GitHub, LinkedIn, IG, etc.
-- 📬 **Contact** – Email form with cute feedback.
-- 📄 **Resume** – View/download both language versions.
-- 🎮 **Projects** – Tech-based fun showcases.
 
 ---
 
-## 🧪 Technologies & Tools
+##  Technologies & Tools
 
 <div align="center">
 
@@ -112,24 +101,24 @@ mi-portafolio-os/
 
 ---
 
-## 📱 All Devices Friendly
+## All Devices Friendly
 
 Even though it's styled like a desktop, it **adapts beautifully to phones**!
 Windows are fully responsive and switch to a mobile drawer-style layout on small screens.
 
 ---
 
-## 🖼️ Preview
+## Preview
 
 <img src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748235351/7be8ec6b-eb30-4a98-aff6-fd07cb928c67.png" width="900" style="border-radius:12px" />
 <img src="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748235417/65209107-0a46-47eb-bf66-aca123ef191e.png" width="900" style="border-radius:12px" />
 
 ---
 
-## 📬 Contact
+##  Contact
 
-- 💌 Message via the "contact" window.
-- 💼 Connect on [LinkedIn](https://www.linkedin.com/in/vianka-castro-121a90364/)
+- Message via the "contact" window.
+- Connect on [LinkedIn](https://www.linkedin.com/in/vianka-castro-121a90364/)
 - ⭐ Star this project if you liked it! :3
 
 ---

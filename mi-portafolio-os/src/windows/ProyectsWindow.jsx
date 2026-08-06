@@ -1,58 +1,72 @@
-import {useEffect, useContext} from "react";
-import Window from "../components/Window";  
-import Proyect from "../components/Proyect"
-import { WindowContext } from "../context/WindowContext";
-import WindowContent from "../components/WindowContent";
+import { useContext } from "react";
+import Window from "../components/Window";
 import SkillGrid from "../components/SkillGrid";
+import ProjectCard from "../components/ProjectCard";
+import { WindowContext } from "../context/WindowContext";
+import { useLanguage } from "../context/LanguageContext";
+import { projects } from "../data/projects";
+import "../styles/Projects.css";
 
+function ProyectsWindow({ zIndex }) {
+  const {
+    openWindow,
+    closeWindow,
+    bringToFront
+  } = useContext(WindowContext);
+  const { language } = useLanguage();
 
-function ProyectsWindow({ zIndex }) {   
-    const { closeWindow, bringToFront } = useContext(WindowContext);    
+  const copy = language === "es"
+    ? {
+        windowTitle: "proyectos",
+        title: "Proyectos",
+        introduction:
+          "Una selección de proyectos que he creado explorando el desarrollo web, móvil y full stack.",
+        stackTitle: "Stack tecnológico"
+      }
+    : {
+        windowTitle: "projects",
+        title: "Projects",
+        introduction:
+          "A selection of projects I have built while exploring web, mobile and full-stack development.",
+        stackTitle: "Tech Stack"
+      };
 
-    return (
-        <Window
-            title="work"
-            zIndex={zIndex}
-            onClose={() => closeWindow("work")}
-            onFocus={() => bringToFront("work")}
-        >
-            <h3 style= {{ 
-                marginTop: "2rem",
-                fontWeight:"bold",
-                fontSize: "1.5rem"}}>
-                    Tech Stack 
-            </h3>
-            <SkillGrid/>
+  const handleProjectClick = (projectId) => {
+    openWindow(`project-${projectId}`);
+  };
 
+  return (
+    <Window
+      title={copy.windowTitle}
+      zIndex={zIndex}
+      defaultSize={{ width: 720, height: 620 }}
+      onClose={() => closeWindow("work")}
+      onFocus={() => bringToFront("work")}
+    >
+    <section>
+        <h2 className="projects-title">{copy.stackTitle}</h2>
+        <SkillGrid />
+      </section>
+      <section className="projects-section">
+        <h2 className="projects-title">{copy.title}</h2>
 
-            <Proyect
-            title="SOL Store"
-            description="Tienda e-commerce con sistema de inventario, autenticación de usuarios y administración con Laravel y Vue.js."
-            tech="Laravel, Vue, PostgreSQL, Docker, Blade, PHP, CSS, JavaScript, "
-            link="https://github.com/Vann06/sol-store-ecommerce"
-            image="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748287884/14e75f3a-1b1f-430e-ab03-ff1e50b35903.png"
+        <p className="projects-introduction">{copy.introduction}</p>
+
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onOpen={handleProjectClick}
             />
+          ))}
+        </div>
+      </section>
 
-            <Proyect
-            title="Miniso E-commerce"
-            description="E-commerce de Miniso con carrito de compras, autenticación de usuarios y administración de productos usando MERN stack."
-            tech="React, JavaScript, CSS, HTML, MongoDB, Node.js, Express"
-            link="https://github.com/Vann06/miniso-ecommerce"
-            image="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748288111/79eb48d3-54f8-4071-9501-d0a8a915fc2b.png"
-            />
+      <hr />
 
-            <Proyect
-            title="Tuto!"
-            description="Aplicación móvil para encontrar tutores y clases particulares, desarrollada tanto para tutores como para estudiantes"
-            tech="Android Studio, Kotlin"
-            link="https://github.com/Vann06/TutorMatch"
-            image="https://res.cloudinary.com/dxjrdqbio/image/upload/v1748960260/af42c515-2fd7-4a9d-8dee-fad3a11502b5.png"
-            />
-
-            
-        </Window>
-
-    );
+    </Window>
+  );
 }
 
 export default ProyectsWindow;

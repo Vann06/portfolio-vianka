@@ -5,12 +5,14 @@ import WindowContent from '../components/WindowContent';
 import emailjs from '@emailjs/browser';
 import '../styles/email.css';
 import '../styles/buttons.css'
+import { useTranslation } from 'react-i18next';
 
 function EmailWindow({ zIndex }) {
   const { closeWindow, bringToFront } = useContext(WindowContext);
   const form = useRef();
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+  const { t } = useTranslation();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ function EmailWindow({ zIndex }) {
         'bHflgf4Viy9YX7nMB'
       )
       .then(() => setSent(true))
-      .catch(() => setError('Error al enviar el mensaje. Intenta de nuevo.'));
+  .catch(() => setError(t('emailForm.error')));
   };
 
   return (
@@ -34,35 +36,31 @@ function EmailWindow({ zIndex }) {
       onFocus={() => bringToFront('contact')}
     >
 
-        {sent ? (
+    {sent ? (
             <div className="email-success">
                 <div className="emoji-bounce">:3</div>
-                <h3>Mail Sent Succesfully!</h3>
-                <p>Ill get in contact with you very soon! 💜</p>
+        <h3>{t('emailForm.successTitle')}</h3>
+        <p>{t('emailForm.successSubtitle')}</p>
             </div>
             ) : (
             <form ref={form} onSubmit={sendEmail} className="email-form">
-                <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
-                    Want to get in touch?
-                </h1>
+        <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{t('emailForm.title')}</h1>
                 <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW52MHBhaG50cTVmMXQxNmZwcWw0M3l2NmVxaTI3anpraWVwOThzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LHZyixOnHwDDy/giphy.gif" alt="Michi-Gif"/>
 
-                <p className="email-intro">
-                    You can send me an email if you like, I'll be happy to get in touch with you! :D
-                </p>
+        <p className="email-intro">{t('emailForm.intro')}</p>
 
                 <div className="email-grid">
-                    <input type="text" name="user_name" placeholder="Your Name" required />
-                    <input type="email" name="user_email" placeholder="Your Mail" required />
+          <input type="text" name="user_name" placeholder={t('emailForm.name')} required />
+          <input type="email" name="user_email" placeholder={t('emailForm.email')} required />
                 </div>
 
-                <input type="text" name="subject" placeholder="Subject" required className="email-subject" />
+        <input type="text" name="subject" placeholder={t('emailForm.subject')} required className="email-subject" />
 
-                <textarea name="message" placeholder="Your message here.." required rows={5} />
+        <textarea name="message" placeholder={t('emailForm.message')} required rows={5} />
 
-                <button className='btn'>Send</button>
+        <button className='btn'>{t('emailForm.send')}</button>
 
-                {error && <div className="email-error">{error}</div>}
+        {error && <div className="email-error">{error}</div>}
             </form>
             )}
 

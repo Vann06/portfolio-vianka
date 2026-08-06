@@ -1,15 +1,17 @@
 import { useContext, useEffect, useMemo } from "react";
 import Window from "../components/Window";
 import { WindowContext } from "../context/WindowContext";
-import { blogPosts } from "../data/blogPosts";
 import { useLanguage } from "../context/LanguageContext";
+import { blogPosts } from "../data/blogPosts";
 import { enrichPost } from "../utils/formatPost";
+import "../styles/Blog.css";
+import "../styles/post.css";
 
 function PostWindow({ zIndex, postId, windowName }) {
   const { language } = useLanguage();
-  const { closeWindow, bringToFront } = useContext(WindowContext);
+  const { openWindow, closeWindow, bringToFront } = useContext(WindowContext);
   const name = windowName || `post-${postId}`;
-  const raw = blogPosts.find((p) => p.id === postId);
+  const raw = blogPosts.find((item) => item.id === postId);
 
   const post = useMemo(
     () => (raw ? enrichPost(raw, language) : null),
@@ -22,190 +24,138 @@ function PostWindow({ zIndex, postId, windowName }) {
 
   if (!post) return null;
 
+  const title = post.title[language] ?? post.title.en;
+  const summary = post.summary[language] ?? post.summary.en;
+  const formattedDate = new Intl.DateTimeFormat(
+    language === "es" ? "es-GT" : "en-US",
+    { year: "numeric", month: "long", day: "2-digit" }
+  ).format(new Date(`${post.date}T12:00:00`));
+
+  const copy = language === "es"
+    ? {
+        entry: "ENTRADA",
+        words: "palabras",
+        related: "También puedes leer",
+        sources: "Fuentes y referencias",
+        go: "Abrir enlace"
+      }
+    : {
+        entry: "ENTRY",
+        words: "words",
+        related: "You can also read",
+        sources: "Sources and references",
+        go: "Open link"
+      };
+
+  const openRelatedPost = (target) => {
+    const relatedPost = blogPosts.find((item) => item.slug === target);
+    const targetWindow = relatedPost ? `post-${relatedPost.id}` : target;
+    openWindow(targetWindow);
+  };
+
   return (
     <Window
-      title={post.title[language]}
+      title={`read://${post.slug}`}
       zIndex={zIndex}
+      defaultSize={{ width: 780, height: 660 }}
       onClose={() => closeWindow(name)}
       onFocus={() => bringToFront(name)}
     >
-      <div
-        className="blog-shell"
-        style={{ padding: "1rem 1.2rem" }}
-        data-window={name}
-      >
+      <article className="blog-article" data-window={name}>
         {post.image && (
-          <div
-            className="blog-card"
-            style={{ padding: 0, overflow: "hidden", marginBottom: "1rem" }}
-          >
+          <figure className="blog-article-hero">
             <img
               src={post.image}
-              alt={post.title[language]}
-              style={{ width: "100%", height: 200, objectFit: "cover" }}
-              onError={(e) => {
-                e.currentTarget.src = "/fallback-post.png";
-              }}
+              alt=""
               draggable={false}
+              onError={(event) => {
+                event.currentTarget.hidden = true;
+              }}
             />
-          </div>
+            <figcaption>
+              {copy.entry}_{String(post.id).padStart(2, "0")} // {post.slug}
+            </figcaption>
+          </figure>
         )}
 
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: "1.55rem",
-            fontWeight: 800,
-            margin: "0 0 .75rem",
-          }}
-          className="dark:text-white"
-        >
-          {post.title[language]}
-        </h1>
+        <header className="blog-article-header">
+          <div className="blog-article-tags">
+            {post.tags.slice(0, 4).map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
 
-        <div
-          className="blog-card dark:text-gray-300"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: ".75rem",
-            fontWeight: 600,
-            marginBottom: ".75rem",
-            fontSize: ".75rem",
-            opacity: 0.85,
-          }}
-        >
-          <span>{post.date}</span>
-          <span>•</span>
-          <span>{post.readTime}</span>
-          <span>•</span>
-          <span>{post.wordCount} words</span>
-          {typeof post.boldRatio === "number" && (
-            <>
-              <span>•</span>
-              <span>bold {Math.round(post.boldRatio * 100)}%</span>
-            </>
-          )}
-        </div>
+          <h1>{title}</h1>
+          <p className="blog-article-deck">{summary}</p>
 
-        <div
-          className="dark:text-gray-300"
-          style={{ fontSize: ".95rem", lineHeight: 1.55, textAlign: "justify" }}
-        >
-          {post.rendered.map((html, i) => (
-            <p key={i} style={{ marginBottom: "1rem" }} dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="blog-article-meta">
+            <time dateTime={post.date}>{formattedDate}</time>
+            <span aria-hidden="true">//</span>
+            <span>{post.readTime}</span>
+            <span aria-hidden="true">//</span>
+            <span>{post.wordCount} {copy.words}</span>
+          </div>
+        </header>
+
+        <section className="blog-article-content">
+          {post.rendered.map((html, index) => (
+            <div
+              key={index}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
           ))}
-        </div>
+        </section>
 
-        {/* Internal links */}
         {post.links?.internal?.length > 0 && (
-          <div style={{ marginTop: "1.5rem" }}>
-            <h4
-              style={{
-                fontWeight: 700,
-                marginBottom: ".5rem",
-                fontSize: ".9rem",
-              }}
-              className="dark:text-white"
-            >
-              {language === "es"
-                ? "También puedes leer"
-                : "You can also read"}
-            </h4>
-            <ul style={{ fontSize: ".85rem", lineHeight: 1.4 }}>
+          <aside className="blog-article-links">
+            <h2>{copy.related}</h2>
+            <ul>
               {post.links.internal.map((link) => (
                 <li key={link.to}>
                   <button
-                    onClick={() => {
-                      closeWindow(name);
-                      // abrir la otra ventana
-                      // asumiendo openWindow está global vía custom hook o context
-                      window.dispatchEvent(
-                        new CustomEvent("open-window", { detail: link.to })
-                      );
-                    }}
-                    style={{
-                      color: "#6b46c1",
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                    className="dark:text-[#c4b5fd]"
+                    type="button"
+                    onClick={() => openRelatedPost(link.to)}
                   >
-                    {link.label}
+                    <span aria-hidden="true">[+]</span> {link.label}
                   </button>
                 </li>
               ))}
             </ul>
-          </div>
+          </aside>
         )}
 
-        {/* External sources */}
         {post.links?.external?.length > 0 && (
-          <div style={{ marginTop: "1.2rem" }}>
-            <h4
-              style={{
-                fontWeight: 700,
-                marginBottom: ".5rem",
-                fontSize: ".9rem",
-              }}
-              className="dark:text-white"
-            >
-              {language === "es" ? "Fuentes" : "Sources"}
-            </h4>
-            <ul style={{ fontSize: ".85rem", lineHeight: 1.4 }}>
-              {post.links.external.map((ext) => (
-                <li key={ext.href}>
+          <aside className="blog-article-links blog-article-sources">
+            <h2>{copy.sources}</h2>
+            <ul>
+              {post.links.external.map((source) => (
+                <li key={source.href}>
                   <a
-                    href={ext.href}
+                    href={source.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: "#2b6cb0", textDecoration: "underline" }}
-                    className="dark:text-[#63b3ed]"
                   >
-                    {ext.label}
+                    <span aria-hidden="true">[↗]</span> {source.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </aside>
         )}
 
-        {/* CTA */}
         {post.cta?.text?.[language] && (
-          <div
-            style={{
-              marginTop: "2rem",
-              padding: "1rem",
-              border: "1px dashed #d4c5a9",
-              textAlign: "center",
-              borderRadius: "6px",
-            }}
-            className="dark:border-[#4a5568]"
-          >
-            <p style={{ fontWeight: 600, marginBottom: ".7rem" }}>
-              {post.cta.text[language]}
-            </p>
+          <footer className="blog-article-cta">
+            <p>{post.cta.text[language]}</p>
             <a
               href={post.cta.url}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                padding: ".5rem 1rem",
-                fontSize: ".85rem",
-                fontWeight: 600,
-                background: "#c4a47c",
-                color: "#1a1a1a",
-                borderRadius: "4px",
-              }}
-              className="dark:bg-[#718096] dark:text-white"
             >
-              {language === "es" ? "Ir" : "Go"}
+              {copy.go} &gt;
             </a>
-          </div>
+          </footer>
         )}
-      </div>
+      </article>
     </Window>
   );
 }
