@@ -415,10 +415,143 @@ export const projects = [
         orientation: "landscape"
       }
     ],
+  },
+  {
+    id: "nekofit",
+
+    title: {
+      en: "NekoFit",
+      es: "NekoFit"
+    },
+
+    shortDescription: {
+      en: "A web platform that gathers health, progress and nutrition",
+      es: "Una plataforma web que une tu salud, progreso y nutrición"
+    },
+
+    description: {
+      en: [
+        "Are you tired of using a thousand apps to manage your calories, your progress in the gym, your water intake or even what outfit to wear?",
+        "NekoFit is a web platform that gathers health, progress and nutrition in one place.",
+        "This idea came from a need that I have had for a long time and I challenged myself to make it myself. I needed a place where I could track my macros",
+        "But also a place where I could have recipes to cook, manage my workouts and even know what to wear one day",
+        "This is just a start as I would like to expand it much more and that it really worked with AppleHealth and that it helped me track all my data and my progress."
+      ],
+
+      es: [
+        "¿Estás cansado de utilizar mil apps para gestionar tus calorias, tu progreso en el gym, tu cantidad de agua o incluso qué outfit ponerte?",
+        "NekoFit es la solución a todos esos problemas, una plataforma web que te permite gestionar tu salud, progreso y nutrición en un solo lugar.",
+        "Esta idea surgió por una necesidad que yo he tenido por mucho tiempo y me reté a hacerla yo misma. Necesitaba un lugar en donde lograra trackear mis macros",
+        "Pero también un lugar donde lograra tener recetas para cocinar, manegar mis entrenamientos e incluso saber que ponerme de ropa un día",
+        "Este solo es un comienzo ya que me gustaría ampliarla muchisimo más y que realmente funcionara con AppleHealth y que me ayudara a trackear en verdad todos mis datos y mi progreso."
+      ]
+    },
+
+    thumbnail: {
+      src: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1786768236/c4b76640-1db5-4531-b689-fc0731443bb7.png",
+
+      alt: {
+        en: "NekoFit web platform ",
+        es: "Plataforma web NekoFit "
+      },
+
+      position: "center"
+    },
+
+    stack: [
+      "Next.js",
+      "React",
+      "Vercel",
+      "Cloudinary",
+      "JavaScript",
+      "TypeScript",
+      "HTML",
+      "CSS"
+    ],
+
+    features: {
+      en: [
+        "Quick tracking dashboard",
+        "Daily food tracking",
+        "Weekly food tracking",
+        "Recipe book",
+        "Workouts",
+        "Shopping cart",
+        "Wardrobe"
+      ],
+
+      es: [
+        "Dashboard rápido de tracking",
+        "Tracking alimentación diaria",
+        "Tracking de alimentación semanal",
+        "Recetario",
+        "Entrenamientos",
+        "Carrito de Compras",
+        "Armario"
+      ]
+    },
+
+    gallery: [
+      {
+        src: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1786768295/86d01bc9-eb2a-43f3-a91c-87338f6dc0f1.png",
+
+        alt: {
+          en: "Shopping List",
+          es: "Lista de Compras"
+        },
+
+        caption: {
+          en: "Shopping list section.",
+          es: "Sección para gestionar la lista de compras."
+        },
+
+        orientation: "landscape"
+      },
+      {
+        src: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1786768373/92e6c80f-4a3d-4310-bcdb-37ff9ca1fa45.png",
+        alt: {
+          en: "Wardrobe",
+          es: "Armario"
+        },
+        caption: {
+          en: "Wardrobe section.",
+          es: "Sección para gestionar el armario."
+        },
+        orientation: "portrait"
+      },
+      {
+        src: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1786768468/b274c540-2b92-486f-bb6b-906b8ea54e37.png",
+        alt: {
+          en: "Dashboard",
+          es: "Dashboard"
+        },
+        caption: {
+          en: "Dashboard section.",
+          es: "Sección del dashboard."
+        },
+        orientation: "landscape"
+      },
+      {
+        src: "https://res.cloudinary.com/dxjrdqbio/image/upload/v1786768551/e7377f3d-eaf4-4e7e-abb0-a1ce0c3816cb.png",
+        alt: {
+          en: "Recipe",
+          es: "Receta"
+        },
+        caption: {
+          en: "Recipe section.",
+          es: "Sección de recetas."
+        },
+        orientation: "landscape"
+      }
+    ],
+    
+    githubUrl: "https://github.com/Vann06/NekoFit",
+    liveUrl: "https://neko-fit.vercel.app/"
   }
 
 
 ];
+
 
 // Copia este objeto dentro de `projects` y reemplaza sus valores
 // cuando quieras publicar un proyecto nuevo.
